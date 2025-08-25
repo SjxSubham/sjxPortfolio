@@ -1,15 +1,10 @@
 "use client";
 import { useEffect } from "react";
-import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/src/app/components/Navbar";
 
-export const metadata: Metadata = {
-  title: "Portfolio | Subham",
-  description: "Sjx's portfolio built with Next.js, TypeScript, Tailwind, and Aceternity-inspired UI.",
-  metadataBase: new URL("https://example.com")
-};
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

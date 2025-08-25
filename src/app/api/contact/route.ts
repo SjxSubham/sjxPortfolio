@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
     const resend = new Resend(resendKey);
 
-    const toEmail = process.env.CONTACT_TO_EMAIL || "arijitiansjx@gmail.com";
+    const toEmail = process.env.CONTACT_TO_EMAIL || "sjxsubham@gmail.com";
     const fromEmail = process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>";
 
     const { data: sendData, error } = await resend.emails.send({

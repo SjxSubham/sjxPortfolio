@@ -1,7 +1,7 @@
 "use client";
 
-import { PROJECTS } from "@/data/projects";
-import { ProjectCard } from "@/components/ProjectCard";
+import { PROJECTS } from "@/src/app/data/projects";
+import { ProjectCard } from "@/src/app/components/ProjectCard";
 import { motion } from "framer-motion";
 
 export function Projects() {

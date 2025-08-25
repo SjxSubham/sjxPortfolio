@@ -96,19 +96,21 @@ export function ProjectCard({ project }: { project: Project }) {
 
       {/* Live preview */}
       <div className="relative mx-3 mb-3 overflow-hidden rounded-xl border border-border/70 bg-black/40">
-        <div className="absolute right-2 top-2 z-10 rounded-full bg-black/50 px-2 py-0.5 text-[10px] text-white/80 backdrop-blur">
-          Preview
-        </div>
-        <div className="relative aspect-[16/10]">
-          {loadPreview ? (
-            <iframe
-              className="preview-frame pointer-events-none absolute inset-0 h-full w-full scale-[0.85] origin-top rounded-md"
-              src={project.liveUrl}
-              title={project.title + " preview"}
-              sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
-              loading="lazy"
-            />
-          ) : (
+  <div className="absolute right-2 top-2 z-10 rounded-full bg-black/50 px-2 py-0.5 text-[10px] text-white/80 backdrop-blur">
+    Preview
+  </div>
+  <div className="relative aspect-[16/10] overflow-hidden">
+    {loadPreview ? (
+      <iframe
+        className="preview-frame pointer-events-none absolute inset-0 h-[120%] w-[120%] -left-[10%] -top-[10%] origin-top-left rounded-md"
+        src={project.liveUrl}
+        title={project.title + " preview"}
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+        loading="lazy"
+        scrolling="no"
+        style={{ border: 0 }}
+      />
+    ) : (
             <div className="absolute inset-0 grid place-items-center text-neutral-500 text-sm">Loading preview…</div>
           )}
           {/* vignette */}

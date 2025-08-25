@@ -1,18 +1,18 @@
-import type { Project } from "@/components/ProjectCard";
+import type { Project } from "@/src/app/components/ProjectCard";
 
 export const PROJECTS: Project[] = [
   {
-    title: "Portfolio (This Site)",
+    title: "Job Seek",
     description: "A uniquely animated portfolio with Aceternity-inspired UI, built on Next.js and TypeScript.",
     tech: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/yourname/your-portfolio"
+    liveUrl: "https://job-seek-umber.vercel.app/",
+    githubUrl: "https://github.com/SjxSubham/JOB-SEEK"
   },
   {
     title: "SaaS Dashboard",
     description: "Admin dashboard featuring charts, auth, and data grids.",
     tech: ["Next.js", "Prisma", "Postgres", "Tailwind"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/yourname/saas-dashboard"
+    liveUrl: "https://zita-code.vercel.app/",
+    githubUrl: "https://github.com/SjxSubham/saas-feedx"
   }
 ];

@@ -18,17 +18,20 @@ export function Hero() {
           className="space-y-5"
         >
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-            Building experiences that feel
-            <span className="relative ml-3 inline-block">
+            Hi, I’m{" "}
+            <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                alive
+                Subham Mondal
               </span>
               <span className="absolute inset-x-0 -bottom-1 h-2 bg-gradient-to-r from-primary/40 to-secondary/40 blur" />
             </span>
           </h1>
           <p className="text-neutral-300/90 text-base sm:text-lg">
-            I’m Arijit, a developer who loves crafting performant frontends, delightful micro-interactions,
-            and robust systems with TypeScript and Next.js.
+            I build clean, performant web apps with Next.js and TypeScript — and I enjoy diving deep
+            into Data Structures & Algorithms (currently focused on Dynamic Programming).
+          </p>
+          <p className="text-neutral-400 text-sm">
+            Ask me about C, C++, JavaScript, and Python. Fun fact: I prefer LeetCode over any other CP platform.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="#projects" className="relative inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 font-medium shadow-glow">
@@ -41,6 +44,13 @@ export function Hero() {
               Contact Me
             </a>
           </div>
+
+          {/* quick tags */}
+          <div className="mt-2 flex flex-wrap gap-2 text-xs text-neutral-300">
+            {["Next.js", "TypeScript", "DP (Non-linear DSA)", "Frontend UX"].map((t) => (
+              <span key={t} className="rounded-full border border-border/60 bg-black/20 px-2 py-0.5">{t}</span>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div
@@ -51,7 +61,6 @@ export function Hero() {
         >
           <div className="group shine-border overflow-hidden">
             <div className="aspect-[4/3]">
-              {/* Animated floating dots grid */}
               <GridOrb />
             </div>
           </div>
