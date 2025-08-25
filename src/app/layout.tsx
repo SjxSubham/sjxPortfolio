@@ -4,8 +4,8 @@ import ClientLayout from "./ClientLayout";
 
 export const metadata: Metadata = {
   title: "Portfolio | Subham",
-  description: "Sjx's portfolio built with Next.js, TypeScript, Tailwind, and Aceternity-inspired UI.",
-  metadataBase: new URL("https://example.com")
+  description: "Subham's portfolio showcasing modern web applications including saas-feedX, mygithub, and job-seek projects. Built with Next.js, TypeScript, and React.",
+  metadataBase: new URL("https://sjxsubham.github.io")
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
