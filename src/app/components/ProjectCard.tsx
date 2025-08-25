@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Star, GitFork } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type Project = {
@@ -9,6 +9,9 @@ export type Project = {
   tech: string[];
   liveUrl: string;
   githubUrl: string;
+  stars?: number;
+  forks?: number;
+  language?: string;
 };
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -60,9 +63,27 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <div className="p-4">
         <div className="flex items-start justify-between gap-3">
-          <div>
+          <div className="flex-1">
             <h3 className="text-lg font-semibold">{project.title}</h3>
             <p className="mt-1 text-sm text-neutral-400">{project.description}</p>
+            
+            {/* GitHub stats */}
+            {(project.stars !== undefined || project.forks !== undefined) && (
+              <div className="mt-2 flex items-center gap-3 text-xs text-neutral-500">
+                {project.stars !== undefined && (
+                  <div className="flex items-center gap-1">
+                    <Star size={12} />
+                    <span>{project.stars}</span>
+                  </div>
+                )}
+                {project.forks !== undefined && (
+                  <div className="flex items-center gap-1">
+                    <GitFork size={12} />
+                    <span>{project.forks}</span>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           <div className="flex gap-2">
             <a

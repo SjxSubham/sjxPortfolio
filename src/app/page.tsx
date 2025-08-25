@@ -1,6 +1,6 @@
-import { Hero } from "@/components/Hero";
-import { Projects } from "@/components/Projects";
-import { ContactForm } from "@/components/ContactForm";
+import { Hero } from "./components/Hero";
+import { Projects } from "./components/Projects";
+import { ContactForm } from "./components/ContactForm";
 
 export default function HomePage() {
   return (
@@ -9,7 +9,7 @@ export default function HomePage() {
       <Projects />
       <ContactForm />
       <footer className="py-10 text-center text-sm text-neutral-400">
-        © {new Date().getFullYear()} Arijit. All rights reserved.
+        © {new Date().getFullYear()} Subham. All rights reserved.
       </footer>
     </main>
   );
