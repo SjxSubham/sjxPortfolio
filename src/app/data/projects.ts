@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { Project } from "@/src/app/components/ProjectCard";
+=======
+import type { Project } from "../components/ProjectCard";
+>>>>>>> c52a266caab5a71e6324acfee9908117fd3cdf51
 
 export const PROJECTS: Project[] = [
   {

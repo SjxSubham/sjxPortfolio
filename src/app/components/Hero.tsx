@@ -21,17 +21,26 @@ export function Hero() {
             Hi, I’m{" "}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+<<<<<<< HEAD
                 Subham Mondal
+=======
+                innovative
+>>>>>>> c52a266caab5a71e6324acfee9908117fd3cdf51
               </span>
               <span className="absolute inset-x-0 -bottom-1 h-2 bg-gradient-to-r from-primary/40 to-secondary/40 blur" />
             </span>
           </h1>
           <p className="text-neutral-300/90 text-base sm:text-lg">
+<<<<<<< HEAD
             I build clean, performant web apps with Next.js and TypeScript — and I enjoy diving deep
             into Data Structures & Algorithms (currently focused on Dynamic Programming).
           </p>
           <p className="text-neutral-400 text-sm">
             Ask me about C, C++, JavaScript, and Python. Fun fact: I prefer LeetCode over any other CP platform.
+=======
+            I’m Subham, a developer who loves crafting performant frontends, delightful micro-interactions,
+            and robust systems with TypeScript and Next.js.
+>>>>>>> c52a266caab5a71e6324acfee9908117fd3cdf51
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="#projects" className="relative inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 font-medium shadow-glow">
