@@ -19,11 +19,15 @@
     "@adobe/css-tools": "^4.3.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest"
+
   },
+  "homepage": "https://sjxsubham.github.io/sjxPortfolio/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -45,6 +49,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.16",
+    "gh-pages": "^6.3.0",
     "jsdom": "^26.1.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.4.1",
