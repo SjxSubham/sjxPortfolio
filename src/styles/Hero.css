@@ -1,0 +1,154 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(74, 0, 224, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  z-index: 1;
+  padding: 2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #8e2de2;
+  font-weight: 600;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #cccccc;
+}
+
+.hero .highlight {
+  background: linear-gradient(to right, #4a00e0, #8e2de2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-buttons {
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  margin: 0 0.5rem 1rem 0.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #4a00e0, #8e2de2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(142, 45, 226, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(142, 45, 226, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #8e2de2;
+  color: #8e2de2;
+}
+
+.btn-secondary:hover {
+  background: #8e2de2;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(142, 45, 226, 0.3);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 10px;
+  font-size: 1.5rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: linear-gradient(45deg, #4a00e0, #8e2de2);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 15px rgba(142, 45, 226, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
