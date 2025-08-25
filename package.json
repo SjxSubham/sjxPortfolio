@@ -9,6 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "lucide-react": "^0.541.0",
+    "ogl": "^1.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
@@ -26,7 +27,6 @@
     "test": "vitest",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
-
   },
   "eslintConfig": {
     "extends": [

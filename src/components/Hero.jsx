@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import PlasmaWaveV2 from './PlasmaWaveV2';
 
 const Hero = () => {
   return (
@@ -42,6 +43,7 @@ const Hero = () => {
             <FaTwitter />
           </a>
         </div>
+        <PlasmaWaveV2 yOffset={0} xOffset={40} rotationDeg={-45} />
       </div>
     </section>
   );
