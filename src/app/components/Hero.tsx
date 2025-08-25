@@ -21,13 +21,13 @@ export function Hero() {
             Building experiences that feel
             <span className="relative ml-3 inline-block">
               <span className="relative z-10 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                alive
+                innovative
               </span>
               <span className="absolute inset-x-0 -bottom-1 h-2 bg-gradient-to-r from-primary/40 to-secondary/40 blur" />
             </span>
           </h1>
           <p className="text-neutral-300/90 text-base sm:text-lg">
-            I’m Arijit, a developer who loves crafting performant frontends, delightful micro-interactions,
+            I’m Subham, a developer who loves crafting performant frontends, delightful micro-interactions,
             and robust systems with TypeScript and Next.js.
           </p>
           <div className="flex flex-wrap gap-3">

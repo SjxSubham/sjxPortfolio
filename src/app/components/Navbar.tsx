@@ -14,7 +14,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border/60 backdrop-blur bg-black/30">
       <div className="container-max flex h-14 items-center justify-between">
         <Link href="/" className="font-semibold tracking-tight">
-          <span className="text-primary">A</span>rijit
+          <span className="text-primary">S</span>ubham
         </Link>
         <nav className="flex items-center gap-5 text-sm">
           <a href="#projects" className="opacity-80 hover:opacity-100 transition">Projects</a>
