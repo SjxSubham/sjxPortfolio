@@ -1,0 +1,58 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 12px;
+}
+
+html, body {
+  height: 100%;
+  background: radial-gradient(1200px 800px at 10% -10%, rgba(124, 58, 237, 0.15), transparent 60%),
+              radial-gradient(1000px 600px at 90% 10%, rgba(59, 130, 246, 0.12), transparent 60%),
+              hsl(222, 28%, 7%);
+  color: hsl(210, 40%, 98%);
+}
+
+.container-max {
+  @apply max-w-6xl mx-auto px-4 sm:px-6;
+}
+
+/* Aceternity-esque shine border utility */
+.shine-border {
+  position: relative;
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border: 1px solid hsl(220, 13%, 18%);
+  overflow: hidden;
+}
+.shine-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  width: 80px;
+  filter: blur(6px);
+  transform: translateX(-100%);
+  animation: shine 3.2s infinite;
+}
+
+/* Spotlight cursor */
+.spotlight {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(300px 300px at var(--x) var(--y), rgba(124, 58, 237, 0.12), transparent 60%);
+  z-index: 0;
+}
+
+/* Hide iframe scrollbars */
+.preview-frame::-webkit-scrollbar {
+  display: none;
+}
+.preview-frame {
+  scrollbar-width: none;
+}
