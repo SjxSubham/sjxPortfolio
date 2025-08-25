@@ -7,6 +7,8 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
+import { Coding } from './components/Coding';
+// import PlasmaWaveV2 from './components/PlasmaWaveV2';
 
 function App() {
   return (
@@ -15,10 +17,12 @@ function App() {
         <div className="relative">
           <Navbar />
           <main className="pt-20">
+        
             <Hero />
             <About />
             <Skills />
             <Projects />
+            <Coding />
             <Contact />
           </main>
           <Footer />

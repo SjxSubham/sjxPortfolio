@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, SquareChevronRight, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
@@ -17,10 +17,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full h-20 flex justify-center items-center backdrop-blur-md px-4 bg-white/90 dark:bg-black/80 backdrop-blur-md z-10 transition-all duration-300 shadow-sm">
+    <nav className="fixed top-0 left-0 w-full h-16 flex justify-center items-center  px-4 bg-white/50 dark:bg-black/30 backdrop-blur-xl z-10 transition-all duration-3000 shadow-sm">
       <div className="flex justify-between items-center w-full max-w-7xl px-4">
         <Link to="/" className="text-2xl font-bold flex items-center" onClick={closeMenu}>
-          <span className="bg-gradient-primary bg-clip-text text-transparent">PORTFOLIO</span>
+          <span className="bg-gradient-primary flex gap-2 bg-clip-text text-transparent"><SquareChevronRight color="#9168df" className='mt-1 ' />Subham</span>
         </Link>
         <div className="hidden md:flex">
           <ul className="flex items-center">

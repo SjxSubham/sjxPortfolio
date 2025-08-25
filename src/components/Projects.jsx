@@ -6,7 +6,7 @@ const Projects = () => {
       id: 1,
       title: 'E-commerce Website',
       description: 'A full-featured e-commerce platform built with React, Node.js, and MongoDB',
-      image: 'https://via.placeholder.com/600x400',
+      image: "https://via.placeholder.com/600x400",
       technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
       liveUrl: 'https://example.com',
       githubUrl: 'https://github.com',
@@ -56,7 +56,7 @@ const Projects = () => {
             >
               <div className="relative overflow-hidden h-[200px]">
                 <img 
-                  src={project.image} 
+                  src={project.image}
                   alt={project.title} 
                   className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                 />

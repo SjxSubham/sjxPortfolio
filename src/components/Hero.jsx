@@ -1,16 +1,60 @@
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import PlasmaWaveV2 from './PlasmaWaveV2';
-
+import SplitText from './SplitText';
 const Hero = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center px-5 bg-gradient-to-br from-light to-light/90 dark:from-dark dark:to-dark/90 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-radial-gradient transition-colors duration-300"
+      className="min-h-screen flex items-center justify-center px-5 bg-gradient-to-br from-light to-light/90 dark:from-dark dark:to-dark/10 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-radial-gradient transition-colors duration-3000"
     >
-      <div className="text-center max-w-3xl w-full z-10 p-8 animate-fadeIn">
-        <h1 className="text-5xl md:text-6xl mb-4 font-bold text-slate-800 dark:text-white">
-          Hello, I'm <span className="bg-gradient-primary bg-clip-text text-transparent">Your Name</span>
+       <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+      </div>
+
+      <div className='flex justify-between items-center animate-fadeIn'>
+              <div className="absolute -right-56 -top-4 z-0 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+        <PlasmaWaveV2
+        // 
+          hoverIntensity={0.5}
+          rotateOnHover={true}
+          hue={0}
+          forceHoverState={false}
+        />
+       
+      </div>
+      </div>
+      <div className='flex justify-center items-center animate-fadeIn'>
+              <div className="absolute -inset-80 z-10 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+        <PlasmaWaveV2
+        // 
+          hoverIntensity={0.1}
+          rotateOnHover={false}
+          hue={0}
+          forceHoverState={true}
+        />
+       
+      </div>
+      </div>
+      <div className="text-center justify-between flex-shrink-0 max-w-4xl w-full z-10 p-8 animate-fadeIn">
+      <h1 className="justify-between text-5xl md:text-6xl mb-4 font-bold text-slate-800 dark:text-white z-10">
+      <SplitText
+  text=" Hello, I'm "
+  className="text-5xl font-semibold text-center"
+  delay={100}
+  duration={0.6}
+  ease="power3.out"
+  splitType="chars"
+  from={{ opacity: 0, y: 40 }}
+  to={{ opacity: 1, y: 0 }}
+  threshold={0.1}
+  rootMargin="-100px"
+  textAlign="center"
+  // onLetterAnimationComplete={handleAnimationComplete}
+/>
+         <span className="bg-gradient-primary bg-clip-text text-transparent">  Subham Mondal</span>
         </h1>
+        
         <h2 className="text-2xl md:text-3xl mb-8 text-primary font-semibold">Full Stack Developer</h2>
         <p className="text-lg md:text-xl mb-8 text-slate-600 dark:text-gray-300">I build amazing web applications with modern technologies</p>
         <div className="mb-8">
@@ -43,7 +87,32 @@ const Hero = () => {
             <FaTwitter />
           </a>
         </div>
-        <PlasmaWaveV2 yOffset={0} xOffset={40} rotationDeg={-45} />
+        
+      </div>
+      <div className='flex justify-center items-center animate-fadeIn'>
+              <div className="absolute right-30 -top-40 z-0 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+        <PlasmaWaveV2
+        // 
+          hoverIntensity={0.5}
+          rotateOnHover={true}
+          hue={0}
+          forceHoverState={false}
+        />
+       
+      </div>
+      
+      </div>
+      <div className='flex justify-center items-center animate-fadeIn'>
+              <div className="absolute right-4 top-40 z-20 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+        <PlasmaWaveV2
+        // 
+          hoverIntensity={0.2}
+          rotateOnHover={false}
+          hue={0}
+          forceHoverState={true}
+        />
+       
+      </div>
       </div>
     </section>
   );

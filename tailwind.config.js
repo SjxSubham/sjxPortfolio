@@ -22,7 +22,16 @@ export default {
           DEFAULT: '#ffffff',
           dark: '#f5f5f5',
           darker: '#e5e5e5'
-        }
+        },
+        monacoBg: '#011627', // Monaco editor background
+        monacoText: '#c792ea', // Monaco editor text color
+        monacoKeyword: '#569cd6', // Keywords like `int`, `return`
+        monacoString: '#ce9178', // String literals
+        monacoComment: '#6a9955', // Comments
+        monacoFunction: '#dcdcaa', // Function names
+      },
+      fontFamily: {
+        mono: ['Fira Code', 'monospace'], // Monaco-like font
       },
       backgroundImage: {
         'gradient-primary': 'linear-gradient(to right, #4a00e0, #8e2de2)',

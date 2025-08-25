@@ -93,7 +93,7 @@ const Skills = () => {
           {skillsData.map((category, index) => (
             <div 
               key={index}
-              className="bg-white dark:bg-dark-lighter rounded-xl p-8 transition-all duration-300 relative overflow-hidden border border-slate-200 dark:border-white/5 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[3px] before:bg-gradient-primary hover:shadow-skill"
+              className="bg-white dark:bg-dark-lighter rounded-xl p-8 transition-all duration-300 relative overflow-hidden border border-slate-200 dark:border-white/5 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[3px] before:bg-gradient-primary dark:shadow-indigo-400 hover:shadow-skill"
             >
               <div className="flex items-center mb-6">
                 <div className="text-4xl mr-4">
