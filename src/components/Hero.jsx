@@ -13,7 +13,7 @@ const Hero = () => {
       </div>
 
       <div className='flex justify-between items-center animate-fadeIn'>
-              <div className="absolute -right-56 -top-4 z-0 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+              <div className="absolute -right-96 top-12 z-0 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
         <PlasmaWaveV2
         // 
           hoverIntensity={0.5}
@@ -25,7 +25,7 @@ const Hero = () => {
       </div>
       </div>
       <div className='flex justify-center items-center animate-fadeIn'>
-              <div className="absolute -inset-80 z-10 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+              <div className="absolute -inset-52 z-10 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
         <PlasmaWaveV2
         // 
           hoverIntensity={0.1}
@@ -90,7 +90,7 @@ const Hero = () => {
         
       </div>
       <div className='flex justify-center items-center animate-fadeIn'>
-              <div className="absolute right-30 -top-40 z-0 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+              <div className="absolute right-16 -top-48 z-0 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
         <PlasmaWaveV2
         // 
           hoverIntensity={0.5}
@@ -103,7 +103,7 @@ const Hero = () => {
       
       </div>
       <div className='flex justify-center items-center animate-fadeIn'>
-              <div className="absolute right-4 top-40 z-20 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
+              <div className="absolute right-40  top-40 z-20 flex"  style={{ width: '100%', height: '600px', position: 'relative' }}>
         <PlasmaWaveV2
         // 
           hoverIntensity={0.2}
