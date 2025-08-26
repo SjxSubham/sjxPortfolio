@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
 import { Coding } from './components/Coding';
+import Slider from './components/Slider';
 // import PlasmaWaveV2 from './components/PlasmaWaveV2';
 
 function App() {
@@ -20,11 +21,13 @@ function App() {
         
             <Hero />
             <About />
+            <Slider />
             <Skills />
             <Projects />
             <Coding />
             <Contact />
           </main>
+          
           <Footer />
         </div>
       </Router>

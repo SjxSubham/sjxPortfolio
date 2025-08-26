@@ -71,7 +71,7 @@ const Hero = () => {
             <FaGithub />
           </a>
           <a 
-            href="https://linkedin.com/" 
+            href="https://www.linkedin.com/in/subham-mondal-914b0b2b8" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center w-12 h-12 rounded-full bg-slate-200/50 dark:bg-white/10 mx-2.5 text-2xl text-slate-700 dark:text-white transition-all duration-300 hover:bg-gradient-primary hover:text-white hover:transform hover:-translate-y-1 hover:shadow-lg"
@@ -79,7 +79,7 @@ const Hero = () => {
             <FaLinkedin />
           </a>
           <a 
-            href="https://twitter.com/" 
+            href="https://x.com/SjxSubham4249" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center w-12 h-12 rounded-full bg-slate-200/50 dark:bg-white/10 mx-2.5 text-2xl text-slate-700 dark:text-white transition-all duration-300 hover:bg-gradient-primary hover:text-white hover:transform hover:-translate-y-1 hover:shadow-lg"

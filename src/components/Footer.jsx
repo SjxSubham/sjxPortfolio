@@ -1,6 +1,7 @@
 import { FaHeart } from 'react-icons/fa';
 import { SiLeetcode } from "react-icons/si";
 import { BiLogoGithub } from "react-icons/bi";
+import { SiDevdotto } from "react-icons/si";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
