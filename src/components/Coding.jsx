@@ -1,5 +1,7 @@
-import { Terminal } from 'lucide-react';
+import { CircleX, Terminal, X } from 'lucide-react';
 import React, { useState } from 'react';
+import { FaRegWindowMaximize } from 'react-icons/fa';
+import { BsDashLg } from "react-icons/bs";
 
 export const Coding = () => {
   const [output, setOutput] = useState('');
@@ -42,14 +44,14 @@ export const Coding = () => {
   return (
     <div className="container mx-auto p-6">
       {/* Code Editor */}
-      <div className="bg-monacoBg text-monacoText text-white rounded-lg shadow-lg p-4">
-        <h2 className="text-xl font-bold mb-4">C++ Code Editor</h2>
+      <div className="dark:bg-monacoBg text-monacoText dark:text-white rounded-lg dark:shadow-lg p-4">
+        <span className="text-xl flex px-2 font-bold mb-4">C++ Code Editor</span> 
         <textarea
-          className="w-full h-48 bg-gray-800  text-monacoFunction p-4 rounded-lg font-mono text-md  resize-none"
+          className="w-full h-56 dark:bg-gray-800 mt-1 shadow-xl px-8 dark:text-monacoFunction text-black/60 p-4 rounded-lg font-mono text-md  resize-none"
           value={`#include <iostream>
 using namespace std;
 int main() {
-    cout << ">  Run the Code to show my Leetcode Profile summary <" <<endl;
+    cout << ">  Run the Code to see my Leetcode Profile summary <" <<endl;
     
     return 0;
 }`}
@@ -64,9 +66,9 @@ int main() {
       </div>
 
       {/* Output Section */}
-      <div className="mt-6 bg-gray-800 text-white rounded-lg shadow-lg p-4">
+      <div className="mt-6 dark:bg-gray-800 dark:text-white rounded-lg shadow-lg p-4">
         <h3 className="text-lg font-semibold">Output:</h3>
-        <pre className="bg-gray-900 p-4 rounded-lg mt-2 flex">  {showProfile && output && (
+        <pre className="dark:bg-gray-900 p-4 rounded-lg mt-2 flex">  {showProfile && output && (
         <div className="px-8 flex">
           <h3 className="text-xl font-bold px-4 -py-2">LeetCode Profile</h3>
           <a
@@ -86,7 +88,7 @@ int main() {
       </div>
 
       {/* LeetCode Profile */}
-    
+      {/* <div className='flex ml-auto gap-0'><div className='rounded-sm h-4 w-4 '><BsDashLg className='h-4 w-3'/></div><div className='h-4 w-4 rounded-sm border px-0.5 dark:border-gray-800'><FaRegWindowMaximize className='dark:bg-gray-900 bg-transparent gap-4 w-3 h-3'/></div><div className='h-3 w-3 px-0.5'> <X className="rounded-sm gap-4 w-3.5 h-3.5" /></div></div> */}
     </div>
   );
 };

@@ -5,13 +5,14 @@ const About = () => {
         <h2 className="section-title dark:text-white">About Me</h2>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 mt-12">
           <div className="flex-1 flex justify-center items-center">
-            <div className="relative w-[300px] h-[300px] rounded-[20px] overflow-hidden shadow-xl">
+            <div className="relative w-[350px] h-[375px] rounded-full overflow-hidden shadow-xl">
               <div className="absolute -inset-2.5 bg-gradient-primary -rotate-6 z-[-1] rounded-[25px]"></div>
               {/* Replace with your own image */}
               <img 
-                src="https://via.placeholder.com/300" 
+                src="https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/profile.png" 
                 alt="Profile" 
-                className="w-full h-full object-cover rounded-[20px] transition-all duration-300"
+                className="w-full h-full object-cover object-center rounded-[20px] transition-all duration-300"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </div>
           </div>
@@ -29,19 +30,19 @@ const About = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-8">
               <div className="flex items-center">
-                <strong className="text-slate-800 dark:text-white mr-2.5">Name:</strong> Your Name
+                <strong className="text-slate-800 dark:text-white mr-2.5">Name:</strong> Subham Mondal
               </div>
               <div className="flex items-center">
-                <strong className="text-slate-800 dark:text-white mr-2.5">Email:</strong> youremail@example.com
+                <strong className="text-slate-800 dark:text-white mr-2.5">Email:</strong> sjxsubham@gmail.com
               </div>
               <div className="flex items-center">
-                <strong className="text-slate-800 dark:text-white mr-2.5">Location:</strong> Your City, Country
+                <strong className="text-slate-800 dark:text-white mr-2.5">Location:</strong> Kolkata, India
               </div>
               <div className="flex items-center">
                 <strong className="text-slate-800 dark:text-white mr-2.5">Status:</strong> Available for work
               </div>
             </div>
-            <a href="#contact" className="btn btn-primary">Download Resume</a>
+            <a href="" className="btn btn-primary ">Download Resume</a>
           </div>
         </div>
       </div>
