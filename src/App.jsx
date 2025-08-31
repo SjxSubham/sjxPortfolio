@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
 import { Coding } from './components/Coding';
 import Slider from './components/Slider';
+import Nei from './components/Nei';
 // import PlasmaWaveV2 from './components/PlasmaWaveV2';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     <ThemeProvider>
       <Router>
         <div className="relative">
-          <Navbar />
+          {/* <Navbar />
           <main className="pt-20">
         
             <Hero />
@@ -28,7 +29,9 @@ function App() {
             <Contact />
           </main>
           
-          <Footer />
+          <Footer /> */}
+
+          <Nei />
         </div>
       </Router>
     </ThemeProvider>
