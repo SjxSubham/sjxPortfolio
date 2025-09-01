@@ -13,7 +13,7 @@ const Nei = () => {
       }}
     >
       <img
-        src="https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/Nei.png" // Replace with your image URL
+        src="https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/Nei%20(2).png" // Replace with your image URL
         alt="Centered"
         style={{
           maxWidth: '100%',
