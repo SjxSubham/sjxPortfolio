@@ -14,6 +14,8 @@ const About = () => {
                 className="w-full h-full object-cover object-center rounded-[20px] transition-all duration-300"
                 onContextMenu={(e) => e.preventDefault()}
               />
+
+              {/* Komlo megheder ojon  */}
             </div>
           </div>
           <div className="flex-[1.5] text-slate-600 dark:text-gray-300">
