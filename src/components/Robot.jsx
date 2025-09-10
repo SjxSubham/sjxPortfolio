@@ -31,7 +31,7 @@ const Robot = () => {
   // Initial greeting
   useEffect(() => {
     setTimeout(() => {
-      setMessage("Hi there! I'm your friendly guide! Click me to say hi!");
+      setMessage("Hi there! I'm your friendly guide!");
       setIsTalking(true);
       setRobotMood('happy');
       
