@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider>
       <Router>
         <div className="relative">
-          {/* <Navbar />
+          <Navbar />
           <main className="pt-20">
         
             <Hero />
@@ -29,9 +29,9 @@ function App() {
             <Contact />
           </main>
           
-          <Footer /> */}
+          <Footer />
 
-          <Nei />
+          {/* <Nei /> */}
         </div>
       </Router>
     </ThemeProvider>

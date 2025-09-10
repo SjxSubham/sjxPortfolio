@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Moon, SquareChevronRight, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import Robot from './Robot';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,9 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full h-16 flex justify-center items-center  px-4 bg-white/50 dark:bg-black/30 backdrop-blur-xl z-10 transition-all duration-3000 shadow-sm">
+      {/* Fixed position robot assistant */}
+      <Robot />
+      
       <div className="flex justify-between items-center w-full max-w-7xl px-4">
         <Link to="/" className="text-2xl font-bold flex items-center" onClick={closeMenu}>
           <span className="bg-gradient-primary flex gap-2 bg-clip-text text-transparent"><SquareChevronRight color="#9168df" className='mt-1 ' />Subham</span>
@@ -30,6 +34,7 @@ const Navbar = () => {
                   href={`#${item}`} 
                   className="text-slate-800 dark:text-white px-4 py-2 h-full flex items-center font-medium relative hover:text-primary transition-colors duration-300 after:content-[''] after:absolute after:bottom-[25px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gradient-primary after:transition-all after:duration-300 hover:after:w-[70%]"
                   onClick={closeMenu}
+                  data-nav-item={item} /* Add data attribute for robot interaction */
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
                 </a>
@@ -40,6 +45,7 @@ const Navbar = () => {
                 onClick={toggleTheme} 
                 className="p-2 rounded-full bg-slate-200/70 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 transition-all duration-300"
                 aria-label="Toggle theme"
+                data-nav-item="theme" /* Add data attribute for robot interaction */
               >
                 {theme === 'dark' ? (
                   <Sun className="w-5 h-5 text-yellow-300" />
@@ -61,6 +67,7 @@ const Navbar = () => {
                   href={`#${item}`} 
                   className="text-slate-800 dark:text-white text-center py-4 px-4 w-full flex justify-center items-center relative after:content-[''] after:absolute after:bottom-[15px] after:w-0 after:h-0.5 after:bg-gradient-primary after:transition-all after:duration-300 hover:after:w-[70%] hover:text-primary"
                   onClick={closeMenu}
+                  data-nav-item={item} /* Add data attribute for robot interaction */
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
                 </a>
