@@ -102,9 +102,13 @@ const Skills = () => {
                 <h3 className="text-slate-800 dark:text-white text-2xl font-bold">{category.name}</h3>
               </div>
               
-              <div className="space-y-6">
+                              <div className="space-y-6">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="mb-4">
+                  <div 
+                    key={skillIndex} 
+                    className="mb-4 skill-item-container" 
+                    data-skill={`${skill.name}`}
+                  >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center">
                         <span className="text-xl text-primary mr-2">{skill.icon}</span>
