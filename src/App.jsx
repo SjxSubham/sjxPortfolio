@@ -9,15 +9,39 @@ import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
 import { Coding } from './components/Coding';
 import Slider from './components/Slider';
-import Nei from './components/Nei';
+// import Nei from './components/Nei';
 // import PlasmaWaveV2 from './components/PlasmaWaveV2';
 
 function App() {
+  const handleContextMenu = (e) => {
+    e.preventDefault(); // Prevent the default right-click menu
+  };
+
+  const handleKeyDown = (e) => {
+    // Disable common shortcuts like Ctrl+Shift+I, Ctrl+U, F12, etc.
+    if (
+      (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+      (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+      e.keyCode === 123 // F12
+    ) {
+      e.preventDefault();
+    }
+  };
+
+  const handleDragStart = (e) => {
+    // Prevent dragging of images or other elements
+    e.preventDefault();
+  };
+
   return (
     <ThemeProvider>
       <Router>
-        <div className="relative">
-          {/* <Navbar />
+        <div className="relative" onContextMenu={handleContextMenu}
+           onKeyDown={handleKeyDown} // Disable specific key combinations
+           onDragStart={handleDragStart} // Prevent dragging
+           tabIndex={0}
+        >
+          <Navbar />
           <main className="pt-20">
         
             <Hero />
@@ -29,9 +53,9 @@ function App() {
             <Contact />
           </main>
           
-          <Footer /> */}
+          <Footer />
 
-          <Nei />
+          {/* <Nei /> */}
         </div>
       </Router>
     </ThemeProvider>
