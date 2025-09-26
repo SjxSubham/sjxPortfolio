@@ -4,39 +4,39 @@ const Projects = () => {
   const projectsData = [
     {
       id: 1,
-      title: 'E-commerce Website',
-      description: 'A full-featured e-commerce platform built with React, Node.js, and MongoDB',
-      image: "https://via.placeholder.com/600x400",
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com',
+      title: 'FeedX',
+      description: 'A SaaS feedback collection platform built with modern web technologies',
+      liveUrl: 'http://feedx.vercel.app/',
+      githubUrl: 'https://github.com/SjxSubham/saas-feedx',
+      technologies: ['React', 'Next.js', 'SaaS', 'Vercel'],
+      useStaticImage: true,
+      staticImage: 'https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/feedximg.png',
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'A task management application with drag-and-drop functionality',
-      image: 'https://via.placeholder.com/600x400',
-      technologies: ['React', 'Redux', 'Firebase'],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com',
+      title: 'MyGithub',
+      description: 'A GitHub profile viewer and repository management application',
+      liveUrl: 'https://mygithubapp.onrender.com/',
+      githubUrl: 'https://github.com/SjxSubham/MyGithub',
+      technologies: ['React', 'GitHub API', 'Node.js', 'Render'],
     },
     {
       id: 3,
-      title: 'Weather Dashboard',
-      description: 'A weather app that displays current and forecasted weather data',
-      image: 'https://via.placeholder.com/600x400',
-      technologies: ['JavaScript', 'API', 'CSS3'],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com',
+      title: 'ZitaCode',
+      description: 'A coding platform with interactive features for developers',
+      liveUrl: 'https://zita-code.vercel.app/',
+      githubUrl: 'https://github.com/SjxSubham/ZitaCode',
+      technologies: ['React', 'Code Editor', 'JavaScript', 'Vercel'],
+      useStaticImage: true,
+      staticImage: 'https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/zitacodeimg.png',
     },
     {
       id: 4,
-      title: 'Social Media Platform',
-      description: 'A social networking platform with real-time messaging',
-      image: 'https://via.placeholder.com/600x400',
-      technologies: ['React', 'Socket.io', 'Node.js', 'MongoDB'],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com',
+      title: 'JOBSEEK',
+      description: 'A job searching platform to help users find their dream job',
+      liveUrl: 'https://job-seek-umber.vercel.app/',
+      githubUrl: 'https://github.com/SjxSubham/JOB-SEEK',
+      technologies: ['React', 'Job Portal', 'UI/UX', 'Vercel'],
     },
   ];
 
@@ -54,12 +54,24 @@ const Projects = () => {
               className="bg-white dark:bg-dark-lighter rounded-lg overflow-hidden shadow-project transition-all duration-300 h-full flex flex-col hover:transform hover:-translate-y-2.5 hover:shadow-project-hover" 
               key={project.id}
             >
-              <div className="relative overflow-hidden h-[200px]">
-                <img 
-                  src={project.image}
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                />
+              <div className="relative overflow-hidden h-[200px] group">
+                {project.useStaticImage ? (
+                  <img 
+                    src={project.staticImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                    onError={(e) => {
+                      e.target.src = '/profile.png'; // Fallback if static image fails
+                    }}
+                  />
+                ) : (
+                  <iframe 
+                    src={project.liveUrl}
+                    title={project.title}
+                    className="w-full h-full border-0 pointer-events-none transition-all duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
                 <div className="absolute inset-0 bg-black/70 flex justify-center items-center gap-4 opacity-0 hover:opacity-100 transition-all duration-300">
                   <a 
                     href={project.liveUrl} 
