@@ -8,7 +8,7 @@ const Projects = () => {
       description: 'A SaaS feedback collection platform built with modern web technologies',
       liveUrl: 'http://feedx.vercel.app/',
       githubUrl: 'https://github.com/SjxSubham/saas-feedx',
-      technologies: ['React', 'Next.js', 'SaaS', 'Vercel'],
+      technologies: ['React', 'Next.js', 'SaaS', 'Vercel', 'Supabase'],
       useStaticImage: true,
       staticImage: 'https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/feedximg.png',
     },
@@ -26,7 +26,7 @@ const Projects = () => {
       description: 'A coding platform with interactive features for developers',
       liveUrl: 'https://zita-code.vercel.app/',
       githubUrl: 'https://github.com/SjxSubham/ZitaCode',
-      technologies: ['React', 'Code Editor', 'JavaScript', 'Vercel'],
+      technologies: ['Next.JS', 'Code Editor', 'TypeScript', 'Vercel', 'Convex', 'AI'],
       useStaticImage: true,
       staticImage: 'https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/zitacodeimg.png',
     },
@@ -36,7 +36,7 @@ const Projects = () => {
       description: 'A job searching platform to help users find their dream job',
       liveUrl: 'https://job-seek-umber.vercel.app/',
       githubUrl: 'https://github.com/SjxSubham/JOB-SEEK',
-      technologies: ['React', 'Job Portal', 'UI/UX', 'Vercel'],
+      technologies: ['React', 'Job Portal', 'UI/UX', 'Vercel' , 'Supabase'],
     },
   ];
 
