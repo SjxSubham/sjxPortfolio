@@ -38,6 +38,14 @@ const Projects = () => {
       githubUrl: 'https://github.com/SjxSubham/JOB-SEEK',
       technologies: ['React', 'Job Portal', 'UI/UX', 'Vercel' , 'Supabase'],
     },
+    {
+      id: 5,
+      title: 'Sjx_Chat',
+      description: 'A chat application for real-time communication, with active user status',
+      liveUrl: 'https://sjx-chatapp.onrender.com/',
+      githubUrl: 'https://github.com/SjxSubham/Sjx_Chat',
+      technologies: ['React', 'Socket.IO', 'Node.js', 'Express', 'MongoDB', 'Zustand'],
+    },
   ];
 
   return (
