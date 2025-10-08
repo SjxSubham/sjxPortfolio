@@ -36,11 +36,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="relative" onContextMenu={handleContextMenu}
-           onKeyDown={handleKeyDown} // Disable specific key combinations
-           onDragStart={handleDragStart} // Prevent dragging
-           tabIndex={0}
-        >
+        <div className="relative">
           <Navbar />
           <main className="pt-20">
         
@@ -53,7 +49,7 @@ function App() {
             <Contact />
           </main>
           
-          <Footer />
+          <Footer /> 
 
           {/* <Nei /> */}
         </div>
