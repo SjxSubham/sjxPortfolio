@@ -52,11 +52,34 @@ export default {
         heartbeat: {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.2)' }
+        },
+        twinkle: {
+          '0%, 100%': { opacity: '0.2', transform: 'scale(0.8)' },
+          '50%': { opacity: '1', transform: 'scale(1.2)' }
+        },
+        float: {
+          '0%': { transform: 'translate(0, 0)' },
+          '25%': { transform: 'translate(50px, -40px)' },
+          '50%': { transform: 'translate(100px, 0)' },
+          '75%': { transform: 'translate(50px, 40px)' },
+          '100%': { transform: 'translate(0, 0)' }
+        },
+        shine: {
+          'from': { transform: 'translateX(-100%)' },
+          'to': { transform: 'translateX(100%)' }
+        },
+        pulse: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' }
         }
       },
       animation: {
         fadeIn: 'fadeIn 1s ease-in-out',
-        heartbeat: 'heartbeat 1.5s ease-in-out infinite'
+        heartbeat: 'heartbeat 1.5s ease-in-out infinite',
+        twinkle: 'twinkle 3s ease-in-out infinite',
+        float: 'float 20s linear infinite',
+        shine: 'shine 2s linear infinite',
+        pulse: 'pulse 2s ease-in-out infinite'
       }
     },
   },
