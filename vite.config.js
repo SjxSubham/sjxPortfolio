@@ -8,5 +8,5 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
   },
-  base: "/sjxPortfolio"
+  base: (process.env.NODE_ENV === 'production' && !process.env.VERCEL) ? '/sjxPortfolio/' : '/'
 })
