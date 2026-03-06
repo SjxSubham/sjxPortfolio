@@ -14,8 +14,11 @@ const LANGUAGES = [
   {
     id: "python",
     name: "Python",
-    version: "3.10.0",
+    version: "3.10.15",
     icon: "🐍",
+    wandboxCompiler: "cpython-3.10.15",
+    pistonLang: "python",
+    pistonVersion: "3.10.0",
     template: `# Python 3.10 — SjxSubhamOS Code Runner
 # Write your code below and hit Run!
 
@@ -40,8 +43,11 @@ fib(10)
   {
     id: "javascript",
     name: "JavaScript",
-    version: "18.15.0",
+    version: "18.20.4",
     icon: "🟨",
+    wandboxCompiler: "nodejs-18.20.4",
+    pistonLang: "javascript",
+    pistonVersion: "18.15.0",
     template: `// JavaScript (Node.js 18) — SjxSubhamOS Code Runner
 // Write your code below and hit Run!
 
@@ -62,8 +68,11 @@ console.log("Sum of 1-10:", sum);
   {
     id: "typescript",
     name: "TypeScript",
-    version: "5.0.3",
+    version: "5.6.2",
     icon: "🔷",
+    wandboxCompiler: "typescript-5.6.2",
+    pistonLang: "typescript",
+    pistonVersion: "5.0.3",
     template: `// TypeScript 5.0 — SjxSubhamOS Code Runner
 
 interface Developer {
@@ -85,8 +94,11 @@ console.log(\`Skills: \${subham.skills.join(", ")}\`);
   {
     id: "cpp",
     name: "C++",
-    version: "10.2.0",
+    version: "13.2.0",
     icon: "⚙️",
+    wandboxCompiler: "gcc-13.2.0",
+    pistonLang: "c++",
+    pistonVersion: "10.2.0",
     template: `// C++ 10.2 — SjxSubhamOS Code Runner
 #include <iostream>
 #include <vector>
@@ -116,8 +128,11 @@ int main() {
   {
     id: "c",
     name: "C",
-    version: "10.2.0",
+    version: "13.2.0",
     icon: "🔧",
+    wandboxCompiler: "gcc-13.2.0-c",
+    pistonLang: "c",
+    pistonVersion: "10.2.0",
     template: `// C 10.2 — SjxSubhamOS Code Runner
 #include <stdio.h>
 #include <string.h>
@@ -142,10 +157,13 @@ int main() {
   {
     id: "java",
     name: "Java",
-    version: "15.0.2",
+    version: "22",
     icon: "☕",
-    template: `// Java 15 — SjxSubhamOS Code Runner
-public class Main {
+    wandboxCompiler: "openjdk-jdk-22+36",
+    pistonLang: "java",
+    pistonVersion: "15.0.2",
+    template: `// Java 22 — SjxSubhamOS Code Runner
+class Main {
     public static void main(String[] args) {
         System.out.println("Hello from Java! Welcome to SjxSubhamOS 🚀");
         System.out.println();
@@ -169,8 +187,11 @@ public class Main {
   {
     id: "rust",
     name: "Rust",
-    version: "1.68.2",
+    version: "1.82.0",
     icon: "🦀",
+    wandboxCompiler: "rust-1.82.0",
+    pistonLang: "rust",
+    pistonVersion: "1.68.2",
     template: `// Rust 1.68 — SjxSubhamOS Code Runner
 
 fn main() {
@@ -200,8 +221,11 @@ fn main() {
   {
     id: "go",
     name: "Go",
-    version: "1.16.2",
+    version: "1.23.2",
     icon: "🐹",
+    wandboxCompiler: "go-1.23.2",
+    pistonLang: "go",
+    pistonVersion: "1.16.2",
     template: `// Go 1.16 — SjxSubhamOS Code Runner
 package main
 
@@ -236,7 +260,111 @@ func main() {
   },
 ];
 
+const WANDBOX_API = "https://wandbox.org/api/compile.json";
 const PISTON_API = "https://emkc.org/api/v2/piston/execute";
+
+// Execute code via Wandbox (primary)
+const runWithWandbox = async (lang, code) => {
+  const response = await fetch(WANDBOX_API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      code,
+      compiler: lang.wandboxCompiler,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Wandbox API Error: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  const result = await response.json();
+
+  // Wandbox returns: status, program_output, program_error, compiler_error, compiler_output
+  const exitCode = parseInt(result.status, 10);
+  const stdout = result.program_output || "";
+  const stderr = result.program_error || "";
+  const compileErr = result.compiler_error || "";
+  const compileOut = result.compiler_output || "";
+
+  if (compileErr && exitCode !== 0 && !stdout) {
+    // Compilation failed
+    return { success: false, output: compileErr, error: "Compilation failed" };
+  }
+
+  if (exitCode !== 0 && stderr) {
+    return {
+      success: false,
+      output: stderr || compileErr,
+      error: `Process exited with code ${exitCode}`,
+    };
+  }
+
+  let output = stdout;
+  if (stderr) {
+    output += (output ? "\n--- stderr ---\n" : "") + stderr;
+  }
+  if (compileOut) {
+    output += (output ? "\n--- compiler ---\n" : "") + compileOut;
+  }
+
+  return { success: true, output: output || "(No output)" };
+};
+
+// Execute code via Piston (fallback)
+const runWithPiston = async (lang, code) => {
+  const response = await fetch(PISTON_API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      language: lang.pistonLang,
+      version: lang.pistonVersion,
+      files: [{ content: code }],
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Piston API Error: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  const result = await response.json();
+
+  if (result.run) {
+    const stdout = result.run.stdout || "";
+    const stderr = result.run.stderr || "";
+
+    if (result.run.code !== 0 && stderr) {
+      return {
+        success: false,
+        output: stderr,
+        error: `Process exited with code ${result.run.code}`,
+      };
+    }
+
+    let output = stdout;
+    if (stderr) {
+      output += (output ? "\n--- stderr ---\n" : "") + stderr;
+    }
+
+    return { success: true, output: output || "(No output)" };
+  } else if (result.compile && result.compile.stderr) {
+    return {
+      success: false,
+      output: result.compile.stderr,
+      error: "Compilation failed",
+    };
+  }
+
+  return {
+    success: false,
+    output: "No output returned from execution.",
+    error: "Unknown error",
+  };
+};
 
 const CodeEditorApp = () => {
   const [selectedLang, setSelectedLang] = useState(LANGUAGES[0]);
@@ -284,49 +412,37 @@ const CodeEditorApp = () => {
     const startTime = performance.now();
 
     try {
-      const response = await fetch(PISTON_API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          language: selectedLang.id === "cpp" ? "c++" : selectedLang.id,
-          version: selectedLang.version,
-          files: [{ content: code }],
-        }),
-      });
+      let result;
 
-      if (!response.ok) {
-        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+      // Try Wandbox first (primary), fall back to Piston
+      try {
+        result = await runWithWandbox(selectedLang, code);
+      } catch (wandboxErr) {
+        // Wandbox failed, try Piston as fallback
+        console.warn(
+          "Wandbox failed, trying Piston fallback:",
+          wandboxErr.message,
+        );
+        try {
+          result = await runWithPiston(selectedLang, code);
+        } catch (pistonErr) {
+          // Both failed
+          throw new Error(
+            `Both APIs failed.\nWandbox: ${wandboxErr.message}\nPiston: ${pistonErr.message}`,
+          );
+        }
       }
 
-      const result = await response.json();
       const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
       setExecTime(elapsed);
 
-      if (result.run) {
-        const stdout = result.run.stdout || "";
-        const stderr = result.run.stderr || "";
-
-        if (result.run.code !== 0 && stderr) {
-          setOutput(stderr);
-          setOutputType("error");
-          setError(`Process exited with code ${result.run.code}`);
-        } else if (stderr && stdout) {
-          setOutput(stdout + "\n--- stderr ---\n" + stderr);
-          setOutputType("success");
-        } else if (stderr) {
-          setOutput(stderr);
-          setOutputType("error");
-        } else {
-          setOutput(stdout || "(No output)");
-          setOutputType("success");
-        }
-      } else if (result.compile && result.compile.stderr) {
-        setOutput(result.compile.stderr);
-        setOutputType("error");
-        setError("Compilation failed");
+      if (result.success) {
+        setOutput(result.output);
+        setOutputType("success");
       } else {
-        setOutput("No output returned from execution.");
+        setOutput(result.output);
         setOutputType("error");
+        setError(result.error || "Execution error");
       }
     } catch (err) {
       const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);

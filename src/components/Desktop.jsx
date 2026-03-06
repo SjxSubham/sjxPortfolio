@@ -748,7 +748,7 @@ const Desktop = () => {
       </div>
 
       {/* Windows */}
-      <div className="absolute inset-0 bottom-12 overflow-hidden z-[6]">
+      <div className="absolute inset-0 bottom-12 overflow-hidden z-[6] pointer-events-none">
         {windows.map((win) => {
           const config = APP_CONFIGS[win.id];
           if (!config) return null;
@@ -756,30 +756,31 @@ const Desktop = () => {
           const AppComponent = config.component;
 
           return (
-            <Window
-              key={win.id}
-              id={win.id}
-              title={win.title}
-              icon={win.icon}
-              isActive={activeWindowId === win.id}
-              isMinimized={win.isMinimized}
-              isMaximized={win.isMaximized}
-              zIndex={win.zIndex}
-              defaultPosition={win.defaultPosition}
-              defaultSize={win.defaultSize}
-              minSize={win.minSize}
-              onFocus={() => focusWindow(win.id)}
-              onClose={() => closeWindow(win.id)}
-              onMinimize={() => minimizeWindow(win.id)}
-              onMaximize={() => maximizeWindow(win.id)}
-              onRestore={() => restoreWindow(win.id)}
-            >
-              {config.passOpenApp ? (
-                <AppComponent onOpenApp={openApp} />
-              ) : (
-                <AppComponent />
-              )}
-            </Window>
+            <div key={win.id} className="pointer-events-auto">
+              <Window
+                id={win.id}
+                title={win.title}
+                icon={win.icon}
+                isActive={activeWindowId === win.id}
+                isMinimized={win.isMinimized}
+                isMaximized={win.isMaximized}
+                zIndex={win.zIndex}
+                defaultPosition={win.defaultPosition}
+                defaultSize={win.defaultSize}
+                minSize={win.minSize}
+                onFocus={() => focusWindow(win.id)}
+                onClose={() => closeWindow(win.id)}
+                onMinimize={() => minimizeWindow(win.id)}
+                onMaximize={() => maximizeWindow(win.id)}
+                onRestore={() => restoreWindow(win.id)}
+              >
+                {config.passOpenApp ? (
+                  <AppComponent onOpenApp={openApp} />
+                ) : (
+                  <AppComponent />
+                )}
+              </Window>
+            </div>
           );
         })}
       </div>
