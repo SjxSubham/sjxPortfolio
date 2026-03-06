@@ -8,9 +8,9 @@ const About = () => {
             <div className="relative w-[350px] h-[375px] rounded-full overflow-hidden shadow-xl">
               <div className="absolute -inset-2.5 bg-gradient-primary -rotate-6 z-[-1] rounded-[25px]"></div>
               {/* Replace with your own image */}
-              <img 
-                src="https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/profile.png" 
-                alt="Profile" 
+              <img
+                src="https://wzmpiaqjnegnitfnahue.supabase.co/storage/v1/object/public/resumes/profile.png"
+                alt="Profile"
                 className="w-full h-full object-cover object-center rounded-[20px] transition-all duration-300"
                 onContextMenu={(e) => e.preventDefault()}
               />
@@ -22,7 +22,7 @@ const About = () => {
             <h3 className="text-primary text-3xl mb-6">Who am I?</h3>
             <p className="mb-6 text-lg leading-relaxed">
               I am a passionate Full Stack Developer with expertise in building modern web applications.
-              With a strong foundation in both frontend and backend technologies, I create seamless, 
+              With a strong foundation in both frontend and backend technologies, I create seamless,
               user-friendly experiences that solve real-world problems.
             </p>
             <p className="mb-6 text-lg leading-relaxed">

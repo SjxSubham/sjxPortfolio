@@ -1,136 +1,328 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Poppins', system-ui, sans-serif;
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply bg-white text-slate-800 antialiased leading-relaxed overflow-x-hidden transition-colors duration-300;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .dark body {
-    @apply bg-dark text-white;
-  }
-  
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    @apply w-2 bg-gray-100;
-  }
-  
-  .dark ::-webkit-scrollbar {
-    @apply bg-dark;
-  }
-  
-  /* Custom Animation Classes */
-  .animate-fadeIn {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-  
-  .animate-twinkle {
-    animation: twinkle 3s ease-in-out infinite;
-  }
-  
-  .animate-float {
-    animation: float 20s linear infinite;
-  }
-  
-  .animate-shine {
-    animation: shine 2s linear infinite;
-  }
-  
-  /* Animation Keyframes */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    html {
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
     }
-  }
-  
-  @keyframes twinkle {
-    0%, 100% {
-      opacity: 0.2;
-      transform: scale(0.8);
+
+    body {
+        background-color: #0a0a0f;
+        color: #e2e8f0;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
     }
-    50% {
-      opacity: 1;
-      transform: scale(1.2);
+
+    #root {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
     }
-  }
-  
-  @keyframes float {
-    0% {
-      transform: translate(0, 0);
+
+    /* Selection color */
+    ::selection {
+        background-color: rgba(168, 85, 247, 0.3);
+        color: #f8fafc;
     }
-    25% {
-      transform: translate(50px, -40px);
+
+    ::-moz-selection {
+        background-color: rgba(168, 85, 247, 0.3);
+        color: #f8fafc;
     }
-    50% {
-      transform: translate(100px, 0);
+
+    /* Global scrollbar — thin and subtle */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
     }
-    75% {
-      transform: translate(50px, 40px);
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
     }
-    100% {
-      transform: translate(0, 0);
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 3px;
     }
-  }
-  
-  @keyframes shine {
-    from {
-      transform: translateX(-100%);
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.15);
     }
-    to {
-      transform: translateX(100%);
+
+    ::-webkit-scrollbar-corner {
+        background: transparent;
     }
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-primary rounded-full;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary;
-  }
+
+    /* Firefox scrollbar */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+    }
+
+    /* Disable text drag on OS elements */
+    [data-desktop-area],
+    .select-none {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Monospace font for terminal/code contexts */
+    .font-mono {
+        font-family:
+            "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas",
+            monospace;
+    }
+
+    /* Remove default focus outlines, add custom */
+    :focus-visible {
+        outline: 1px solid rgba(168, 85, 247, 0.5);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    button:focus:not(:focus-visible),
+    a:focus:not(:focus-visible),
+    input:focus:not(:focus-visible),
+    textarea:focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    /* Prevent iOS zoom on inputs */
+    @media screen and (max-width: 768px) {
+        input,
+        textarea,
+        select {
+            font-size: 16px !important;
+        }
+    }
+
+    /* Smooth image rendering */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+    }
 }
 
 @layer components {
-  .btn {
-    @apply inline-block px-8 py-3 mx-2 mb-4 rounded-full text-base font-semibold uppercase cursor-pointer transition-all duration-300 border-2 border-transparent;
-  }
-  
-  .btn-primary {
-    @apply bg-gradient-primary text-white shadow-button hover:transform hover:-translate-y-1 hover:shadow-button-hover;
-  }
-  
-  .btn-secondary {
-    @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white hover:transform hover:-translate-y-1 hover:shadow-button-hover;
-  }
-  
-  .btn-sm {
-    @apply py-2 px-4 text-sm;
-  }
-  
-  .section-title {
-    @apply text-4xl text-white mb-4 text-center relative pb-5 after:content-[''] after:absolute after:w-[70px] after:h-[3px] after:bg-gradient-primary after:bottom-0 after:left-1/2 after:-translate-x-1/2;
-  }
-  
-  .section-description {
-    @apply text-center text-gray-400 max-w-[700px] mx-auto mb-12 text-lg;
-  }
-  
-  .container {
-    @apply max-w-7xl mx-auto px-5;
-  }
+    /* Reusable glass panel effect */
+    .glass-panel {
+        background: rgba(13, 17, 23, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Subtle glow effect for interactive elements */
+    .glow-purple {
+        box-shadow:
+            0 0 20px rgba(168, 85, 247, 0.1),
+            0 0 60px rgba(168, 85, 247, 0.05);
+    }
+
+    .glow-blue {
+        box-shadow:
+            0 0 20px rgba(59, 130, 246, 0.1),
+            0 0 60px rgba(59, 130, 246, 0.05);
+    }
+
+    .glow-green {
+        box-shadow:
+            0 0 20px rgba(34, 197, 94, 0.1),
+            0 0 60px rgba(34, 197, 94, 0.05);
+    }
+
+    /* OS-specific utility: window body */
+    .window-body {
+        @apply flex-1 overflow-auto bg-[#0d1117]/95 text-white/90 text-sm;
+    }
+
+    /* Terminal cursor blink */
+    .cursor-blink {
+        animation: cursorBlink 1s step-end infinite;
+    }
+}
+
+@layer utilities {
+    /* Hide scrollbar utility */
+    .scrollbar-hidden {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Text shadow for desktop icon labels */
+    .text-shadow-sm {
+        text-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.8),
+            0 0 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .text-shadow-md {
+        text-shadow:
+            0 2px 4px rgba(0, 0, 0, 0.8),
+            0 0 12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Truncate with ellipsis */
+    .truncate-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .truncate-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+/* === Global Keyframe Animations === */
+
+@keyframes cursorBlink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse-subtle {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Reusable animation classes */
+.animate-fadeIn {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slideUp {
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideDown {
+    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-shimmer {
+    animation: shimmer 2.5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
