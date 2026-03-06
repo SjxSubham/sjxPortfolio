@@ -1,17 +1,26 @@
-import { useState, useRef, useEffect } from 'react';
-import { Play, RotateCcw, Copy, Check, ChevronDown, Loader2, Terminal, Trash2 } from 'lucide-react';
+import { useState, useRef, useEffect } from "react";
+import {
+  Play,
+  RotateCcw,
+  Copy,
+  Check,
+  ChevronDown,
+  Loader2,
+  Terminal,
+  Trash2,
+} from "lucide-react";
 
 const LANGUAGES = [
   {
-    id: 'python',
-    name: 'Python',
-    version: '3.10.0',
-    icon: '🐍',
-    template: `# Python 3.10 — SubhamOS Code Runner
+    id: "python",
+    name: "Python",
+    version: "3.10.0",
+    icon: "🐍",
+    template: `# Python 3.10 — SjxSubhamOS Code Runner
 # Write your code below and hit Run!
 
 def greet(name):
-    return f"Hello, {name}! Welcome to SubhamOS 🚀"
+    return f"Hello, {name}! Welcome to SjxSubhamOS 🚀"
 
 print(greet("World"))
 print()
@@ -29,14 +38,14 @@ fib(10)
 `,
   },
   {
-    id: 'javascript',
-    name: 'JavaScript',
-    version: '18.15.0',
-    icon: '🟨',
-    template: `// JavaScript (Node.js 18) — SubhamOS Code Runner
+    id: "javascript",
+    name: "JavaScript",
+    version: "18.15.0",
+    icon: "🟨",
+    template: `// JavaScript (Node.js 18) — SjxSubhamOS Code Runner
 // Write your code below and hit Run!
 
-const greet = (name) => \`Hello, \${name}! Welcome to SubhamOS 🚀\`;
+const greet = (name) => \`Hello, \${name}! Welcome to SjxSubhamOS 🚀\`;
 
 console.log(greet("World"));
 console.log();
@@ -51,11 +60,11 @@ console.log("Sum of 1-10:", sum);
 `,
   },
   {
-    id: 'typescript',
-    name: 'TypeScript',
-    version: '5.0.3',
-    icon: '🔷',
-    template: `// TypeScript 5.0 — SubhamOS Code Runner
+    id: "typescript",
+    name: "TypeScript",
+    version: "5.0.3",
+    icon: "🔷",
+    template: `// TypeScript 5.0 — SjxSubhamOS Code Runner
 
 interface Developer {
   name: string;
@@ -74,18 +83,18 @@ console.log(\`Skills: \${subham.skills.join(", ")}\`);
 `,
   },
   {
-    id: 'cpp',
-    name: 'C++',
-    version: '10.2.0',
-    icon: '⚙️',
-    template: `// C++ 10.2 — SubhamOS Code Runner
+    id: "cpp",
+    name: "C++",
+    version: "10.2.0",
+    icon: "⚙️",
+    template: `// C++ 10.2 — SjxSubhamOS Code Runner
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
 int main() {
-    cout << "Hello from C++! Welcome to SubhamOS 🚀" << endl;
+    cout << "Hello from C++! Welcome to SjxSubhamOS 🚀" << endl;
     cout << endl;
 
     // Vector operations
@@ -105,16 +114,16 @@ int main() {
 `,
   },
   {
-    id: 'c',
-    name: 'C',
-    version: '10.2.0',
-    icon: '🔧',
-    template: `// C 10.2 — SubhamOS Code Runner
+    id: "c",
+    name: "C",
+    version: "10.2.0",
+    icon: "🔧",
+    template: `// C 10.2 — SjxSubhamOS Code Runner
 #include <stdio.h>
 #include <string.h>
 
 int main() {
-    printf("Hello from C! Welcome to SubhamOS 🚀\\n\\n");
+    printf("Hello from C! Welcome to SjxSubhamOS 🚀\\n\\n");
 
     // Simple pattern
     int n = 5;
@@ -131,14 +140,14 @@ int main() {
 `,
   },
   {
-    id: 'java',
-    name: 'Java',
-    version: '15.0.2',
-    icon: '☕',
-    template: `// Java 15 — SubhamOS Code Runner
+    id: "java",
+    name: "Java",
+    version: "15.0.2",
+    icon: "☕",
+    template: `// Java 15 — SjxSubhamOS Code Runner
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello from Java! Welcome to SubhamOS 🚀");
+        System.out.println("Hello from Java! Welcome to SjxSubhamOS 🚀");
         System.out.println();
 
         // Factorial
@@ -150,7 +159,7 @@ public class Main {
         System.out.println(n + "! = " + factorial);
 
         // String reversal
-        String str = "SubhamOS";
+        String str = "SjxSubhamOS";
         String reversed = new StringBuilder(str).reverse().toString();
         System.out.println("Reversed: " + reversed);
     }
@@ -158,14 +167,14 @@ public class Main {
 `,
   },
   {
-    id: 'rust',
-    name: 'Rust',
-    version: '1.68.2',
-    icon: '🦀',
-    template: `// Rust 1.68 — SubhamOS Code Runner
+    id: "rust",
+    name: "Rust",
+    version: "1.68.2",
+    icon: "🦀",
+    template: `// Rust 1.68 — SjxSubhamOS Code Runner
 
 fn main() {
-    println!("Hello from Rust! Welcome to SubhamOS 🚀");
+    println!("Hello from Rust! Welcome to SjxSubhamOS 🚀");
     println!();
 
     let numbers: Vec<i32> = (1..=10).collect();
@@ -189,11 +198,11 @@ fn main() {
 `,
   },
   {
-    id: 'go',
-    name: 'Go',
-    version: '1.16.2',
-    icon: '🐹',
-    template: `// Go 1.16 — SubhamOS Code Runner
+    id: "go",
+    name: "Go",
+    version: "1.16.2",
+    icon: "🐹",
+    template: `// Go 1.16 — SjxSubhamOS Code Runner
 package main
 
 import (
@@ -202,7 +211,7 @@ import (
 )
 
 func main() {
-    fmt.Println("Hello from Go! Welcome to SubhamOS 🚀")
+    fmt.Println("Hello from Go! Welcome to SjxSubhamOS 🚀")
     fmt.Println()
 
     // String building
@@ -227,18 +236,18 @@ func main() {
   },
 ];
 
-const PISTON_API = 'https://emkc.org/api/v2/piston/execute';
+const PISTON_API = "https://emkc.org/api/v2/piston/execute";
 
 const CodeEditorApp = () => {
   const [selectedLang, setSelectedLang] = useState(LANGUAGES[0]);
   const [code, setCode] = useState(LANGUAGES[0].template);
-  const [output, setOutput] = useState('');
+  const [output, setOutput] = useState("");
   const [isRunning, setIsRunning] = useState(false);
   const [execTime, setExecTime] = useState(null);
   const [showLangMenu, setShowLangMenu] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState(null);
-  const [outputType, setOutputType] = useState('idle'); // idle, success, error, running
+  const [outputType, setOutputType] = useState("idle"); // idle, success, error, running
   const textareaRef = useRef(null);
   const langMenuRef = useRef(null);
   const outputRef = useRef(null);
@@ -249,17 +258,17 @@ const CodeEditorApp = () => {
         setShowLangMenu(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleLanguageChange = (lang) => {
     setSelectedLang(lang);
     setCode(lang.template);
-    setOutput('');
+    setOutput("");
     setExecTime(null);
     setError(null);
-    setOutputType('idle');
+    setOutputType("idle");
     setShowLangMenu(false);
   };
 
@@ -267,19 +276,19 @@ const CodeEditorApp = () => {
     if (isRunning || !code.trim()) return;
 
     setIsRunning(true);
-    setOutput('');
+    setOutput("");
     setError(null);
     setExecTime(null);
-    setOutputType('running');
+    setOutputType("running");
 
     const startTime = performance.now();
 
     try {
       const response = await fetch(PISTON_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          language: selectedLang.id === 'cpp' ? 'c++' : selectedLang.id,
+          language: selectedLang.id === "cpp" ? "c++" : selectedLang.id,
           version: selectedLang.version,
           files: [{ content: code }],
         }),
@@ -294,37 +303,40 @@ const CodeEditorApp = () => {
       setExecTime(elapsed);
 
       if (result.run) {
-        const stdout = result.run.stdout || '';
-        const stderr = result.run.stderr || '';
+        const stdout = result.run.stdout || "";
+        const stderr = result.run.stderr || "";
 
         if (result.run.code !== 0 && stderr) {
           setOutput(stderr);
-          setOutputType('error');
+          setOutputType("error");
           setError(`Process exited with code ${result.run.code}`);
         } else if (stderr && stdout) {
-          setOutput(stdout + '\n--- stderr ---\n' + stderr);
-          setOutputType('success');
+          setOutput(stdout + "\n--- stderr ---\n" + stderr);
+          setOutputType("success");
         } else if (stderr) {
           setOutput(stderr);
-          setOutputType('error');
+          setOutputType("error");
         } else {
-          setOutput(stdout || '(No output)');
-          setOutputType('success');
+          setOutput(stdout || "(No output)");
+          setOutputType("success");
         }
       } else if (result.compile && result.compile.stderr) {
         setOutput(result.compile.stderr);
-        setOutputType('error');
-        setError('Compilation failed');
+        setOutputType("error");
+        setError("Compilation failed");
       } else {
-        setOutput('No output returned from execution.');
-        setOutputType('error');
+        setOutput("No output returned from execution.");
+        setOutputType("error");
       }
     } catch (err) {
       const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
       setExecTime(elapsed);
-      setOutput(err.message || 'Failed to execute code. Check your internet connection.');
-      setOutputType('error');
-      setError('Execution failed');
+      setOutput(
+        err.message ||
+          "Failed to execute code. Check your internet connection.",
+      );
+      setOutputType("error");
+      setError("Execution failed");
     } finally {
       setIsRunning(false);
     }
@@ -337,11 +349,11 @@ const CodeEditorApp = () => {
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // Fallback
-      const textarea = document.createElement('textarea');
+      const textarea = document.createElement("textarea");
       textarea.value = code;
       document.body.appendChild(textarea);
       textarea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(textarea);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -349,34 +361,34 @@ const CodeEditorApp = () => {
   };
 
   const handleClear = () => {
-    setOutput('');
+    setOutput("");
     setExecTime(null);
     setError(null);
-    setOutputType('idle');
+    setOutputType("idle");
   };
 
   const handleReset = () => {
     setCode(selectedLang.template);
-    setOutput('');
+    setOutput("");
     setExecTime(null);
     setError(null);
-    setOutputType('idle');
+    setOutputType("idle");
   };
 
   const handleKeyDown = (e) => {
     // Ctrl/Cmd + Enter to run
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
       e.preventDefault();
       handleRun();
       return;
     }
 
     // Tab key inserts spaces
-    if (e.key === 'Tab') {
+    if (e.key === "Tab") {
       e.preventDefault();
       const start = e.target.selectionStart;
       const end = e.target.selectionEnd;
-      const newCode = code.substring(0, start) + '    ' + code.substring(end);
+      const newCode = code.substring(0, start) + "    " + code.substring(end);
       setCode(newCode);
       requestAnimationFrame(() => {
         e.target.selectionStart = e.target.selectionEnd = start + 4;
@@ -384,7 +396,7 @@ const CodeEditorApp = () => {
     }
   };
 
-  const lineCount = code.split('\n').length;
+  const lineCount = code.split("\n").length;
 
   return (
     <div className="h-full flex flex-col bg-[#0a0e14] overflow-hidden">
@@ -399,8 +411,13 @@ const CodeEditorApp = () => {
             >
               <span>{selectedLang.icon}</span>
               <span className="font-medium">{selectedLang.name}</span>
-              <span className="text-white/30 text-[10px]">v{selectedLang.version}</span>
-              <ChevronDown size={12} className={`text-white/30 transition-transform duration-200 ${showLangMenu ? 'rotate-180' : ''}`} />
+              <span className="text-white/30 text-[10px]">
+                v{selectedLang.version}
+              </span>
+              <ChevronDown
+                size={12}
+                className={`text-white/30 transition-transform duration-200 ${showLangMenu ? "rotate-180" : ""}`}
+              />
             </button>
 
             {showLangMenu && (
@@ -415,14 +432,16 @@ const CodeEditorApp = () => {
                       onClick={() => handleLanguageChange(lang)}
                       className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all duration-150 ${
                         selectedLang.id === lang.id
-                          ? 'bg-purple-500/15 text-purple-300 border border-purple-500/20'
-                          : 'text-white/60 hover:bg-white/5 hover:text-white/90 border border-transparent'
+                          ? "bg-purple-500/15 text-purple-300 border border-purple-500/20"
+                          : "text-white/60 hover:bg-white/5 hover:text-white/90 border border-transparent"
                       }`}
                     >
                       <span className="text-sm">{lang.icon}</span>
                       <div className="flex flex-col items-start">
                         <span className="font-medium">{lang.name}</span>
-                        <span className="text-[10px] text-white/25">v{lang.version}</span>
+                        <span className="text-[10px] text-white/25">
+                          v{lang.version}
+                        </span>
                       </div>
                       {selectedLang.id === lang.id && (
                         <Check size={12} className="ml-auto text-purple-400" />
@@ -443,8 +462,12 @@ const CodeEditorApp = () => {
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] text-white/40 hover:text-white/80 hover:bg-white/5 transition-all duration-200"
             title="Copy code"
           >
-            {copied ? <Check size={12} className="text-green-400" /> : <Copy size={12} />}
-            {copied ? 'Copied' : 'Copy'}
+            {copied ? (
+              <Check size={12} className="text-green-400" />
+            ) : (
+              <Copy size={12} />
+            )}
+            {copied ? "Copied" : "Copy"}
           </button>
 
           <button
@@ -463,8 +486,8 @@ const CodeEditorApp = () => {
           disabled={isRunning}
           className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 ${
             isRunning
-              ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 cursor-not-allowed'
-              : 'bg-green-500/15 hover:bg-green-500/25 text-green-400 hover:text-green-300 border border-green-500/30 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10'
+              ? "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 cursor-not-allowed"
+              : "bg-green-500/15 hover:bg-green-500/25 text-green-400 hover:text-green-300 border border-green-500/30 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10"
           }`}
         >
           {isRunning ? (
@@ -476,7 +499,9 @@ const CodeEditorApp = () => {
             <>
               <Play size={13} fill="currentColor" />
               Run
-              <span className="text-[9px] text-white/20 ml-1 font-normal">Ctrl+↵</span>
+              <span className="text-[9px] text-white/20 ml-1 font-normal">
+                Ctrl+↵
+              </span>
             </>
           )}
         </button>
@@ -489,7 +514,7 @@ const CodeEditorApp = () => {
           {/* Line numbers */}
           <div
             className="shrink-0 bg-[#080b10] text-white/15 text-[11px] font-mono leading-[1.7] px-3 py-3 text-right select-none overflow-hidden border-r border-white/5"
-            style={{ minWidth: '44px' }}
+            style={{ minWidth: "44px" }}
           >
             {Array.from({ length: lineCount }, (_, i) => (
               <div key={i + 1}>{i + 1}</div>
@@ -510,39 +535,50 @@ const CodeEditorApp = () => {
             placeholder="Write your code here..."
             style={{
               tabSize: 4,
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#1e293b #0a0e14',
+              scrollbarWidth: "thin",
+              scrollbarColor: "#1e293b #0a0e14",
             }}
           />
         </div>
 
         {/* Output Panel */}
-        <div className="shrink-0 flex flex-col" style={{ height: '35%', minHeight: '120px' }}>
+        <div
+          className="shrink-0 flex flex-col"
+          style={{ height: "35%", minHeight: "120px" }}
+        >
           {/* Output header */}
           <div className="flex items-center justify-between px-3 py-1.5 bg-[#0d1117] border-b border-white/5 shrink-0">
             <div className="flex items-center gap-2">
-              <Terminal size={12} className={`${
-                outputType === 'error' ? 'text-red-400' :
-                outputType === 'success' ? 'text-green-400' :
-                outputType === 'running' ? 'text-yellow-400 animate-pulse' :
-                'text-white/30'
-              }`} />
-              <span className="text-[11px] font-medium text-white/50">Output</span>
+              <Terminal
+                size={12}
+                className={`${
+                  outputType === "error"
+                    ? "text-red-400"
+                    : outputType === "success"
+                      ? "text-green-400"
+                      : outputType === "running"
+                        ? "text-yellow-400 animate-pulse"
+                        : "text-white/30"
+                }`}
+              />
+              <span className="text-[11px] font-medium text-white/50">
+                Output
+              </span>
 
               {/* Status badge */}
-              {outputType === 'success' && (
+              {outputType === "success" && (
                 <span className="flex items-center gap-1 px-2 py-0.5 bg-green-500/10 border border-green-500/20 rounded-full text-[10px] text-green-400">
                   <span className="w-1 h-1 bg-green-400 rounded-full" />
                   Success
                 </span>
               )}
-              {outputType === 'error' && (
+              {outputType === "error" && (
                 <span className="flex items-center gap-1 px-2 py-0.5 bg-red-500/10 border border-red-500/20 rounded-full text-[10px] text-red-400">
                   <span className="w-1 h-1 bg-red-400 rounded-full" />
-                  {error || 'Error'}
+                  {error || "Error"}
                 </span>
               )}
-              {outputType === 'running' && (
+              {outputType === "running" && (
                 <span className="flex items-center gap-1 px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-[10px] text-yellow-400">
                   <Loader2 size={8} className="animate-spin" />
                   Executing...
@@ -574,29 +610,35 @@ const CodeEditorApp = () => {
             ref={outputRef}
             className="flex-1 overflow-auto p-3 font-mono text-[12px] leading-[1.65]"
             style={{
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#1e293b #0a0e14',
+              scrollbarWidth: "thin",
+              scrollbarColor: "#1e293b #0a0e14",
             }}
           >
-            {outputType === 'idle' && !output && (
+            {outputType === "idle" && !output && (
               <div className="h-full flex flex-col items-center justify-center text-white/15 text-xs gap-2">
                 <Terminal size={24} />
                 <span>Run your code to see output here</span>
-                <span className="text-[10px] text-white/10">Press Ctrl + Enter to execute</span>
+                <span className="text-[10px] text-white/10">
+                  Press Ctrl + Enter to execute
+                </span>
               </div>
             )}
 
-            {outputType === 'running' && (
+            {outputType === "running" && (
               <div className="h-full flex flex-col items-center justify-center text-yellow-400/50 text-xs gap-2">
                 <Loader2 size={20} className="animate-spin" />
                 <span>Executing {selectedLang.name} code...</span>
               </div>
             )}
 
-            {output && outputType !== 'running' && (
-              <pre className={`whitespace-pre-wrap break-words ${
-                outputType === 'error' ? 'text-red-400/80' : 'text-green-300/90'
-              }`}>
+            {output && outputType !== "running" && (
+              <pre
+                className={`whitespace-pre-wrap break-words ${
+                  outputType === "error"
+                    ? "text-red-400/80"
+                    : "text-green-300/90"
+                }`}
+              >
                 {output}
               </pre>
             )}
@@ -607,7 +649,9 @@ const CodeEditorApp = () => {
       {/* Status bar */}
       <div className="flex items-center justify-between px-3 py-1 bg-[#0d1117] border-t border-white/5 shrink-0 text-[10px] text-white/20 font-mono">
         <div className="flex items-center gap-3">
-          <span>{selectedLang.icon} {selectedLang.name}</span>
+          <span>
+            {selectedLang.icon} {selectedLang.name}
+          </span>
           <span>Ln {lineCount}</span>
           <span>UTF-8</span>
         </div>
