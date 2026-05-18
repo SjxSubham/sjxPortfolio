@@ -1,11 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  Terminal,
-  User,
-  Code2,
-  FolderGit2,
-  Mail,
-  Cpu,
   Wifi,
   Battery,
   Volume2,
@@ -13,57 +7,65 @@ import {
   Search,
   LayoutGrid,
 } from "lucide-react";
-import { SiLeetcode } from "react-icons/si";
-import { BiLogoGithub } from "react-icons/bi";
+import {
+  StudioTerminalIcon,
+  StudioProfileIcon,
+  StudioSkillsIcon,
+  StudioProjectsIcon,
+  StudioCodeIcon,
+  StudioLeetCodeIcon,
+  StudioGithubIcon,
+  StudioMailIcon,
+} from "./StudioIcons";
 
 const taskbarApps = [
   {
     id: "terminal",
     label: "Terminal",
-    icon: <Terminal size={20} />,
-    color: "text-green-400",
+    icon: <StudioTerminalIcon size={18} />,
+    color: "text-emerald-300",
   },
   {
     id: "about",
     label: "About Me",
-    icon: <User size={20} />,
-    color: "text-blue-400",
+    icon: <StudioProfileIcon size={18} />,
+    color: "text-sky-300",
   },
   {
     id: "skills",
     label: "Skills",
-    icon: <Cpu size={20} />,
-    color: "text-cyan-400",
+    icon: <StudioSkillsIcon size={18} />,
+    color: "text-cyan-300",
   },
   {
     id: "projects",
     label: "Projects",
-    icon: <FolderGit2 size={20} />,
-    color: "text-orange-400",
+    icon: <StudioProjectsIcon size={18} />,
+    color: "text-orange-300",
   },
   {
     id: "codeeditor",
     label: "Code Runner",
-    icon: <Code2 size={20} />,
-    color: "text-yellow-400",
+    icon: <StudioCodeIcon size={18} />,
+    color: "text-amber-300",
   },
   {
     id: "leetcode",
     label: "LeetCode",
-    icon: <SiLeetcode size={18} />,
-    color: "text-amber-400",
+    icon: <StudioLeetCodeIcon size={18} />,
+    color: "text-yellow-300",
   },
   {
     id: "github",
     label: "GitHub",
-    icon: <BiLogoGithub size={20} />,
+    icon: <StudioGithubIcon size={18} />,
     color: "text-white",
   },
   {
     id: "contact",
     label: "Contact",
-    icon: <Mail size={20} />,
-    color: "text-purple-400",
+    icon: <StudioMailIcon size={18} />,
+    color: "text-violet-300",
   },
 ];
 
@@ -152,11 +154,11 @@ const Taskbar = ({
       {showStartMenu && (
         <div
           ref={startMenuRef}
-          className="fixed bottom-12 left-2 w-80 max-h-[70vh] bg-[#0d1117]/98 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/60 z-[9998] overflow-hidden animate-startMenuIn"
+          className="fixed bottom-12 left-2 w-80 max-h-[70vh] bg-[#121018]/95 backdrop-blur-xl border border-amber-400/20 rounded-2xl shadow-2xl shadow-black/60 z-[9998] overflow-hidden animate-startMenuIn"
         >
           {/* Search bar */}
           <div className="p-3 border-b border-white/5">
-            <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2">
+            <div className="flex items-center gap-2 bg-white/[0.04] border border-amber-400/20 rounded-xl px-3 py-2">
               <Search size={14} className="text-white/30" />
               <input
                 type="text"
@@ -169,11 +171,11 @@ const Taskbar = ({
 
           {/* User banner */}
           <div className="px-4 py-3 border-b border-white/5 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-purple-500/20">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-rose-400 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-amber-500/20">
               SX
             </div>
             <div>
-              <p className="text-white/90 text-sm font-medium">SjxSubham</p>
+              <p className="text-white/90 text-sm font-display">SjxSubham</p>
               <p className="text-white/30 text-xs">Full Stack Developer</p>
             </div>
           </div>
@@ -190,7 +192,7 @@ const Taskbar = ({
                 <button
                   key={app.id}
                   onClick={() => handleTaskbarAppClick(app.id)}
-                  className="flex flex-col items-center gap-1.5 p-3 rounded-lg hover:bg-white/5 transition-all duration-200 group"
+                  className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-amber-500/10 transition-all duration-200 group"
                 >
                   <div
                     className={`${app.color} group-hover:scale-110 transition-transform duration-200`}
@@ -211,17 +213,17 @@ const Taskbar = ({
               href="https://github.com/SjxSubham"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-white/40 hover:text-white/80 text-xs"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-amber-500/10 transition-colors text-white/40 hover:text-white text-xs"
             >
-              <BiLogoGithub size={14} /> GitHub
+              <StudioGithubIcon size={14} /> GitHub
             </a>
             <a
               href="https://leetcode.com/u/Sjx_Subham/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-white/40 hover:text-white/80 text-xs"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-amber-500/10 transition-colors text-white/40 hover:text-white text-xs"
             >
-              <SiLeetcode size={12} /> LeetCode
+              <StudioLeetCodeIcon size={12} /> LeetCode
             </a>
           </div>
         </div>
@@ -230,7 +232,7 @@ const Taskbar = ({
       {/* Tooltip */}
       {hoveredApp && !showStartMenu && (
         <div
-          className="fixed bottom-14 px-2.5 py-1 bg-[#1a1a2e] border border-white/10 rounded-md text-white/80 text-[11px] font-medium z-[9999] pointer-events-none whitespace-nowrap animate-tooltipIn"
+          className="fixed bottom-14 px-2.5 py-1 bg-[#16131c] border border-amber-400/20 rounded-lg text-white/80 text-[11px] font-medium z-[9999] pointer-events-none whitespace-nowrap animate-tooltipIn"
           style={{
             left: tooltipPos.x,
             transform: "translateX(-50%)",
@@ -241,20 +243,20 @@ const Taskbar = ({
       )}
 
       {/* Taskbar */}
-      <div className="fixed bottom-0 left-0 right-0 h-12 bg-[#0d1117]/90 backdrop-blur-xl border-t border-white/5 z-[9997] flex items-center px-1 select-none">
+      <div className="fixed bottom-0 left-0 right-0 h-12 bg-[#0f0e12]/90 backdrop-blur-xl border-t border-amber-400/10 shadow-[0_-12px_30px_rgba(0,0,0,0.45)] z-[9997] flex items-center px-1 select-none rounded-t-2xl">
         {/* Start button */}
         <button
           ref={startBtnRef}
           onClick={() => setShowStartMenu((prev) => !prev)}
-          className={`h-10 w-10 flex items-center justify-center rounded-lg mx-1 transition-all duration-200 group
-            ${showStartMenu ? "bg-white/10" : "hover:bg-white/5"}`}
+          className={`h-10 w-10 flex items-center justify-center rounded-xl mx-1 transition-all duration-200 group
+            ${showStartMenu ? "bg-amber-500/15" : "hover:bg-white/5"}`}
           title="Start"
         >
           <LayoutGrid
             size={18}
             className={`transition-all duration-200 ${
               showStartMenu
-                ? "text-purple-400 rotate-45 scale-90"
+                ? "text-amber-300 rotate-45 scale-90"
                 : "text-white/60 group-hover:text-white/90"
             }`}
           />
@@ -280,7 +282,7 @@ const Taskbar = ({
                 onMouseLeave={() => setHoveredApp(null)}
                 className={`relative h-10 flex items-center justify-center rounded-lg transition-all duration-200 group
                   ${open ? "w-11 mx-px" : "w-10 mx-px"}
-                  ${active ? "bg-white/10" : open ? "bg-white/5" : "hover:bg-white/5"}
+                  ${active ? "bg-amber-500/10" : open ? "bg-white/5" : "hover:bg-white/5"}
                 `}
               >
                 <div
@@ -299,7 +301,7 @@ const Taskbar = ({
                 {open && (
                   <div
                     className={`absolute -bottom-0.5 left-1/2 -translate-x-1/2 rounded-full transition-all duration-200
-                      ${active ? "w-4 h-[2px] bg-purple-400" : "w-1.5 h-[2px] bg-white/30"}
+                      ${active ? "w-4 h-[2px] bg-amber-400" : "w-1.5 h-[2px] bg-white/30"}
                     `}
                   />
                 )}
@@ -311,22 +313,22 @@ const Taskbar = ({
         {/* System tray */}
         <div className="flex items-center gap-0.5 mr-1">
           {/* Tray expand */}
-          <button className="h-8 w-6 flex items-center justify-center rounded hover:bg-white/5 transition-colors">
+          <button className="h-8 w-6 flex items-center justify-center rounded hover:bg-amber-500/10 transition-colors">
             <ChevronUp size={12} className="text-white/30" />
           </button>
 
           {/* Network */}
-          <div className="h-8 w-8 flex items-center justify-center rounded hover:bg-white/5 transition-colors cursor-default">
+          <div className="h-8 w-8 flex items-center justify-center rounded hover:bg-amber-500/10 transition-colors cursor-default">
             <Wifi size={13} className="text-white/40" />
           </div>
 
           {/* Volume */}
-          <div className="h-8 w-8 flex items-center justify-center rounded hover:bg-white/5 transition-colors cursor-default">
+          <div className="h-8 w-8 flex items-center justify-center rounded hover:bg-amber-500/10 transition-colors cursor-default">
             <Volume2 size={13} className="text-white/40" />
           </div>
 
           {/* Battery */}
-          <div className="h-8 w-8 flex items-center justify-center rounded hover:bg-white/5 transition-colors cursor-default">
+          <div className="h-8 w-8 flex items-center justify-center rounded hover:bg-amber-500/10 transition-colors cursor-default">
             <Battery size={13} className="text-white/40" />
           </div>
 
@@ -334,7 +336,7 @@ const Taskbar = ({
           <div className="w-px h-5 bg-white/10 mx-1" />
 
           {/* Clock */}
-          <div className="flex flex-col items-end justify-center px-2 py-1 rounded-lg hover:bg-white/5 transition-colors cursor-default min-w-[80px]">
+          <div className="flex flex-col items-end justify-center px-2 py-1 rounded-lg hover:bg-amber-500/10 transition-colors cursor-default min-w-[80px]">
             <span className="text-white/70 text-[11px] font-medium leading-tight">
               {formatTime(time)}
             </span>
@@ -345,7 +347,7 @@ const Taskbar = ({
 
           {/* Show desktop */}
           <div
-            className="w-1.5 h-10 hover:bg-white/10 transition-colors cursor-pointer rounded-r"
+            className="w-1.5 h-10 hover:bg-amber-500/10 transition-colors cursor-pointer rounded-r"
             title="Show Desktop"
           />
         </div>

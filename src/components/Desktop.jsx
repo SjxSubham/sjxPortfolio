@@ -1,21 +1,19 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { Info, RefreshCw, Monitor, Palette } from "lucide-react";
 import {
-  Terminal,
-  User,
-  Code2,
-  FolderGit2,
-  Mail,
-  Cpu,
-  Info,
-  RefreshCw,
-  Monitor,
-  Palette,
-} from "lucide-react";
-import { SiLeetcode } from "react-icons/si";
-import { BiLogoGithub } from "react-icons/bi";
+  StudioTerminalIcon,
+  StudioProfileIcon,
+  StudioSkillsIcon,
+  StudioProjectsIcon,
+  StudioCodeIcon,
+  StudioLeetCodeIcon,
+  StudioGithubIcon,
+  StudioMailIcon,
+} from "./StudioIcons";
 
 import Window from "./Window";
 import Taskbar from "./Taskbar";
+import WallpaperBot from "./WallpaperBot";
 import TerminalApp from "./apps/TerminalApp";
 import AboutApp from "./apps/AboutApp";
 import SkillsApp from "./apps/SkillsApp";
@@ -28,7 +26,7 @@ import GithubApp from "./apps/GithubApp";
 const APP_CONFIGS = {
   terminal: {
     title: "Terminal — sjxsubham@portfolio",
-    icon: <Terminal size={14} className="text-green-400" />,
+    icon: <StudioTerminalIcon size={14} className="text-emerald-300" />,
     defaultSize: { width: 780, height: 520 },
     minSize: { width: 500, height: 350 },
     component: TerminalApp,
@@ -36,49 +34,49 @@ const APP_CONFIGS = {
   },
   about: {
     title: "About — Subham Mondal",
-    icon: <User size={14} className="text-blue-400" />,
+    icon: <StudioProfileIcon size={14} className="text-sky-300" />,
     defaultSize: { width: 640, height: 560 },
     minSize: { width: 400, height: 400 },
     component: AboutApp,
   },
   skills: {
     title: "Skills & Technologies",
-    icon: <Cpu size={14} className="text-cyan-400" />,
+    icon: <StudioSkillsIcon size={14} className="text-cyan-300" />,
     defaultSize: { width: 720, height: 580 },
     minSize: { width: 450, height: 400 },
     component: SkillsApp,
   },
   projects: {
     title: "My Projects",
-    icon: <FolderGit2 size={14} className="text-orange-400" />,
+    icon: <StudioProjectsIcon size={14} className="text-orange-300" />,
     defaultSize: { width: 800, height: 600 },
     minSize: { width: 500, height: 400 },
     component: ProjectsApp,
   },
   codeeditor: {
     title: "Code Runner — Piston API",
-    icon: <Code2 size={14} className="text-yellow-400" />,
+    icon: <StudioCodeIcon size={14} className="text-amber-300" />,
     defaultSize: { width: 820, height: 600 },
     minSize: { width: 550, height: 450 },
     component: CodeEditorApp,
   },
   contact: {
     title: "Contact — Get In Touch",
-    icon: <Mail size={14} className="text-purple-400" />,
+    icon: <StudioMailIcon size={14} className="text-violet-300" />,
     defaultSize: { width: 780, height: 580 },
     minSize: { width: 480, height: 400 },
     component: ContactApp,
   },
   leetcode: {
     title: "LeetCode — Sjx_Subham",
-    icon: <SiLeetcode size={13} className="text-amber-400" />,
+    icon: <StudioLeetCodeIcon size={13} className="text-yellow-300" />,
     defaultSize: { width: 680, height: 580 },
     minSize: { width: 400, height: 400 },
     component: LeetCodeApp,
   },
   github: {
     title: "GitHub — SjxSubham",
-    icon: <BiLogoGithub size={15} className="text-white" />,
+    icon: <StudioGithubIcon size={15} className="text-white" />,
     defaultSize: { width: 720, height: 600 },
     minSize: { width: 450, height: 400 },
     component: GithubApp,
@@ -89,138 +87,177 @@ const DESKTOP_ICONS = [
   {
     id: "terminal",
     label: "Terminal",
-    icon: <Terminal size={28} />,
-    color: "text-green-400",
+    icon: <StudioTerminalIcon size={24} />,
+    color: "text-emerald-300",
+    tilt: -3,
+    offset: { x: 2, y: 0 },
+    noteTint: "rgba(16, 185, 129, 0.12)",
+    tapeTint: "rgba(251, 191, 36, 0.32)",
   },
   {
     id: "about",
     label: "About Me",
-    icon: <User size={28} />,
-    color: "text-blue-400",
+    icon: <StudioProfileIcon size={24} />,
+    color: "text-sky-300",
+    tilt: 2,
+    offset: { x: -2, y: 6 },
+    noteTint: "rgba(56, 189, 248, 0.12)",
+    tapeTint: "rgba(148, 163, 184, 0.3)",
   },
   {
     id: "skills",
     label: "Skills",
-    icon: <Cpu size={28} />,
-    color: "text-cyan-400",
+    icon: <StudioSkillsIcon size={24} />,
+    color: "text-cyan-300",
+    tilt: -2,
+    offset: { x: 3, y: 2 },
+    noteTint: "rgba(14, 165, 233, 0.12)",
+    tapeTint: "rgba(56, 189, 248, 0.28)",
   },
   {
     id: "projects",
     label: "Projects",
-    icon: <FolderGit2 size={28} />,
-    color: "text-orange-400",
+    icon: <StudioProjectsIcon size={24} />,
+    color: "text-orange-300",
+    tilt: 3,
+    offset: { x: -1, y: 8 },
+    noteTint: "rgba(251, 146, 60, 0.12)",
+    tapeTint: "rgba(251, 146, 60, 0.3)",
   },
   {
     id: "codeeditor",
     label: "Code Runner",
-    icon: <Code2 size={28} />,
-    color: "text-yellow-400",
+    icon: <StudioCodeIcon size={24} />,
+    color: "text-amber-300",
+    tilt: -1,
+    offset: { x: 2, y: 4 },
+    noteTint: "rgba(250, 204, 21, 0.12)",
+    tapeTint: "rgba(250, 204, 21, 0.3)",
   },
   {
     id: "leetcode",
     label: "LeetCode",
-    icon: <SiLeetcode size={24} />,
-    color: "text-amber-400",
+    icon: <StudioLeetCodeIcon size={22} />,
+    color: "text-yellow-300",
+    tilt: 2,
+    offset: { x: -3, y: 10 },
+    noteTint: "rgba(251, 191, 36, 0.12)",
+    tapeTint: "rgba(253, 224, 71, 0.3)",
   },
   {
     id: "github",
     label: "GitHub",
-    icon: <BiLogoGithub size={28} />,
+    icon: <StudioGithubIcon size={24} />,
     color: "text-white",
+    tilt: -2,
+    offset: { x: 1, y: 6 },
+    noteTint: "rgba(255, 255, 255, 0.08)",
+    tapeTint: "rgba(148, 163, 184, 0.28)",
   },
   {
     id: "contact",
     label: "Contact",
-    icon: <Mail size={28} />,
-    color: "text-purple-400",
+    icon: <StudioMailIcon size={24} />,
+    color: "text-violet-300",
+    tilt: 3,
+    offset: { x: -2, y: 12 },
+    noteTint: "rgba(168, 85, 247, 0.12)",
+    tapeTint: "rgba(168, 85, 247, 0.3)",
   },
 ];
 
 const WALLPAPER_OPTIONS = [
   {
-    id: "default",
-    name: "Midnight Purple",
+    id: "atelier",
+    name: "Ink & Paper",
     style: {
       background:
-        "radial-gradient(ellipse at 20% 50%, rgba(88, 28, 135, 0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(30, 58, 138, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(15, 23, 42, 0.8) 0%, transparent 70%), linear-gradient(135deg, #0a0a0f 0%, #0d1117 50%, #0a0e14 100%)",
+        "radial-gradient(ellipse at 70% 15%, rgba(245, 158, 11, 0.12) 0%, transparent 45%), radial-gradient(ellipse at 15% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 55%), linear-gradient(160deg, #0b0a0d 0%, #131019 55%, #0c0d12 100%)",
     },
     orbColors: [
-      "rgba(139, 92, 246, 0.08)",
-      "rgba(59, 130, 246, 0.06)",
-      "rgba(168, 85, 247, 0.07)",
-    ],
-    auroraColors: [
-      "rgba(139, 92, 246, 0.04)",
-      "rgba(59, 130, 246, 0.03)",
-      "rgba(168, 85, 247, 0.05)",
-    ],
-    starColor: "rgba(168, 85, 247, 0.6)",
-    gridColor: "rgba(139, 92, 246, 0.03)",
-  },
-  {
-    id: "ocean",
-    name: "Deep Ocean",
-    style: {
-      background:
-        "radial-gradient(ellipse at 30% 70%, rgba(6, 78, 112, 0.2) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(14, 116, 144, 0.15) 0%, transparent 50%), linear-gradient(160deg, #020617 0%, #0c1929 50%, #051525 100%)",
-    },
-    orbColors: [
-      "rgba(6, 182, 212, 0.07)",
-      "rgba(14, 116, 144, 0.06)",
-      "rgba(34, 211, 238, 0.05)",
-    ],
-    auroraColors: [
-      "rgba(6, 182, 212, 0.04)",
-      "rgba(14, 116, 144, 0.03)",
-      "rgba(8, 145, 178, 0.04)",
-    ],
-    starColor: "rgba(34, 211, 238, 0.6)",
-    gridColor: "rgba(6, 182, 212, 0.03)",
-  },
-  {
-    id: "emerald",
-    name: "Emerald Night",
-    style: {
-      background:
-        "radial-gradient(ellipse at 25% 60%, rgba(5, 90, 58, 0.15) 0%, transparent 55%), radial-gradient(ellipse at 75% 30%, rgba(16, 120, 82, 0.1) 0%, transparent 50%), linear-gradient(145deg, #030712 0%, #071210 50%, #0a0f0d 100%)",
-    },
-    orbColors: [
-      "rgba(16, 185, 129, 0.07)",
-      "rgba(52, 211, 153, 0.05)",
-      "rgba(5, 150, 105, 0.06)",
-    ],
-    auroraColors: [
-      "rgba(16, 185, 129, 0.04)",
-      "rgba(52, 211, 153, 0.03)",
-      "rgba(5, 150, 105, 0.04)",
-    ],
-    starColor: "rgba(52, 211, 153, 0.6)",
-    gridColor: "rgba(16, 185, 129, 0.03)",
-  },
-  {
-    id: "rose",
-    name: "Rose Nebula",
-    style: {
-      background:
-        "radial-gradient(ellipse at 40% 40%, rgba(136, 19, 55, 0.12) 0%, transparent 55%), radial-gradient(ellipse at 60% 70%, rgba(88, 28, 135, 0.1) 0%, transparent 50%), linear-gradient(135deg, #0f0508 0%, #130a10 50%, #0a0a0f 100%)",
-    },
-    orbColors: [
-      "rgba(244, 63, 94, 0.06)",
-      "rgba(236, 72, 153, 0.05)",
+      "rgba(245, 158, 11, 0.08)",
+      "rgba(56, 189, 248, 0.07)",
       "rgba(168, 85, 247, 0.06)",
     ],
     auroraColors: [
-      "rgba(244, 63, 94, 0.04)",
-      "rgba(236, 72, 153, 0.03)",
-      "rgba(190, 18, 60, 0.04)",
+      "rgba(251, 191, 36, 0.04)",
+      "rgba(56, 189, 248, 0.03)",
+      "rgba(244, 114, 182, 0.03)",
     ],
-    starColor: "rgba(244, 63, 94, 0.6)",
-    gridColor: "rgba(244, 63, 94, 0.03)",
+    starColor: "rgba(253, 224, 71, 0.55)",
+    gridColor: "rgba(253, 224, 71, 0.04)",
+  },
+  {
+    id: "copper",
+    name: "Copper Dusk",
+    style: {
+      background:
+        "radial-gradient(ellipse at 75% 30%, rgba(251, 146, 60, 0.14) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 55%), linear-gradient(155deg, #0d0a0b 0%, #141018 50%, #0f0c12 100%)",
+    },
+    orbColors: [
+      "rgba(251, 146, 60, 0.09)",
+      "rgba(248, 113, 113, 0.07)",
+      "rgba(34, 211, 238, 0.05)",
+    ],
+    auroraColors: [
+      "rgba(251, 146, 60, 0.04)",
+      "rgba(248, 113, 113, 0.03)",
+      "rgba(94, 234, 212, 0.03)",
+    ],
+    starColor: "rgba(251, 191, 36, 0.55)",
+    gridColor: "rgba(251, 146, 60, 0.04)",
+  },
+  {
+    id: "moss",
+    name: "Moss Journal",
+    style: {
+      background:
+        "radial-gradient(ellipse at 65% 25%, rgba(34, 197, 94, 0.12) 0%, transparent 45%), radial-gradient(ellipse at 15% 70%, rgba(20, 83, 45, 0.16) 0%, transparent 55%), linear-gradient(150deg, #090b0a 0%, #0f1311 60%, #0b0f0e 100%)",
+    },
+    orbColors: [
+      "rgba(34, 197, 94, 0.09)",
+      "rgba(16, 185, 129, 0.07)",
+      "rgba(20, 83, 45, 0.08)",
+    ],
+    auroraColors: [
+      "rgba(34, 197, 94, 0.04)",
+      "rgba(16, 185, 129, 0.03)",
+      "rgba(132, 204, 22, 0.03)",
+    ],
+    starColor: "rgba(134, 239, 172, 0.55)",
+    gridColor: "rgba(134, 239, 172, 0.04)",
+  },
+  {
+    id: "indigo",
+    name: "Indigo Sketch",
+    style: {
+      background:
+        "radial-gradient(ellipse at 65% 20%, rgba(129, 140, 248, 0.14) 0%, transparent 45%), radial-gradient(ellipse at 25% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 55%), linear-gradient(160deg, #0a0b10 0%, #101222 55%, #0b0e18 100%)",
+    },
+    orbColors: [
+      "rgba(129, 140, 248, 0.09)",
+      "rgba(99, 102, 241, 0.07)",
+      "rgba(59, 130, 246, 0.06)",
+    ],
+    auroraColors: [
+      "rgba(129, 140, 248, 0.04)",
+      "rgba(59, 130, 246, 0.03)",
+      "rgba(148, 163, 184, 0.03)",
+    ],
+    starColor: "rgba(165, 180, 252, 0.6)",
+    gridColor: "rgba(165, 180, 252, 0.04)",
   },
 ];
 
 /* ── Floating Orbs ── */
 const FloatingOrbs = ({ colors }) => {
+  const blobShapes = [
+    "42% 58% 63% 37% / 45% 40% 60% 55%",
+    "58% 42% 33% 67% / 52% 45% 55% 48%",
+    "47% 53% 58% 42% / 60% 38% 62% 40%",
+    "60% 40% 45% 55% / 52% 62% 38% 48%",
+  ];
+
   const orbs = useMemo(() => {
     return Array.from({ length: 5 }, (_, i) => ({
       id: i,
@@ -230,6 +267,7 @@ const FloatingOrbs = ({ colors }) => {
       duration: 18 + Math.random() * 22,
       delay: Math.random() * -20,
       color: colors[i % colors.length],
+      shape: blobShapes[i % blobShapes.length],
     }));
   }, [colors]);
 
@@ -238,14 +276,15 @@ const FloatingOrbs = ({ colors }) => {
       {orbs.map((orb) => (
         <div
           key={orb.id}
-          className="absolute rounded-full animate-floatOrb"
+          className="absolute animate-floatOrb"
           style={{
             width: orb.size,
             height: orb.size,
             left: `${orb.x}%`,
             top: `${orb.y}%`,
             background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
-            filter: "blur(60px)",
+            borderRadius: orb.shape,
+            filter: "blur(70px)",
             animationDuration: `${orb.duration}s`,
             animationDelay: `${orb.delay}s`,
             transform: "translate(-50%, -50%)",
@@ -393,6 +432,12 @@ const ParticleField = ({ color }) => {
     }));
   }, []);
 
+  const withAlpha = (alpha) =>
+    color.replace(
+      /rgba\((\d+),\s*(\d+),\s*(\d+),\s*[\d.]+\)/,
+      `rgba($1, $2, $3, ${alpha})`,
+    );
+
   return (
     <div className="absolute inset-0 pointer-events-none z-[2]">
       {particles.map((p) => (
@@ -404,13 +449,48 @@ const ParticleField = ({ color }) => {
             top: `${p.y}%`,
             width: p.size,
             height: p.size,
-            backgroundColor: color.replace("0.6", `${p.opacity}`),
-            boxShadow: `0 0 ${p.size * 3}px ${color.replace("0.6", "0.3")}`,
+            backgroundColor: withAlpha(p.opacity),
+            boxShadow: `0 0 ${p.size * 3}px ${withAlpha(0.3)}`,
             animationDuration: `${p.duration}s`,
             animationDelay: `${p.delay}s`,
           }}
         />
       ))}
+    </div>
+  );
+};
+
+const TapeCorners = () => {
+  const tapes = [
+    { id: "tl", top: 18, left: 22, rotate: -6, width: 74 },
+    { id: "tr", top: 16, right: 26, rotate: 7, width: 66 },
+    { id: "bl", bottom: 34, left: 30, rotate: 5, width: 72 },
+    { id: "br", bottom: 30, right: 24, rotate: -5, width: 64 },
+  ];
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-[3]">
+      {tapes.map((tape) => {
+        const style = {
+          width: tape.width,
+          height: 18,
+          background:
+            "linear-gradient(90deg, rgba(255,255,255,0.22), rgba(255,255,255,0.05))",
+          border: "1px solid rgba(255,255,255,0.08)",
+          boxShadow: "0 6px 14px rgba(0,0,0,0.35)",
+          transform: `rotate(${tape.rotate}deg)`,
+          opacity: 0.55,
+        };
+
+        if (tape.top !== undefined) style.top = tape.top;
+        if (tape.left !== undefined) style.left = tape.left;
+        if (tape.right !== undefined) style.right = tape.right;
+        if (tape.bottom !== undefined) style.bottom = tape.bottom;
+
+        return (
+          <div key={tape.id} className="absolute rounded-sm" style={style} />
+        );
+      })}
     </div>
   );
 };
@@ -624,7 +704,7 @@ const Desktop = () => {
   const contextMenuItems = [
     {
       label: "Open Terminal",
-      icon: <Terminal size={13} />,
+      icon: <StudioTerminalIcon size={13} className="text-emerald-300" />,
       action: () => openApp("terminal"),
     },
     { type: "separator" },
@@ -634,7 +714,7 @@ const Desktop = () => {
       disabled: true,
     },
     {
-      label: "Change Wallpaper",
+      label: "Desk Backdrop",
       icon: <Palette size={13} />,
       action: () => setShowWallpaperPicker(true),
     },
@@ -645,7 +725,7 @@ const Desktop = () => {
       action: () => window.location.reload(),
     },
     {
-      label: "About SjxSubhamOS",
+      label: "About the Studio",
       icon: <Info size={13} />,
       action: () => openApp("about"),
     },
@@ -662,26 +742,25 @@ const Desktop = () => {
       {/* ── Animated Background Layers ── */}
       <FloatingOrbs colors={wallpaper.orbColors} />
       <AuroraEffect colors={wallpaper.auroraColors} />
-      <ShootingStars color={wallpaper.starColor} />
-      <AnimatedGrid color={wallpaper.gridColor} />
       <ParticleField color={wallpaper.starColor} />
+      <TapeCorners />
 
-      {/* Subtle dot grid pattern */}
+      {/* Sketch line pattern */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.015] z-[2]"
+        className="absolute inset-0 pointer-events-none opacity-[0.08] z-[2]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
+            "repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 11px), repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 16px)",
+          mixBlendMode: "soft-light",
         }}
       />
 
       {/* Noise texture overlay */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.02] mix-blend-overlay z-[2]"
+        className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-soft-light z-[2]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")`,
-          backgroundSize: "128px 128px",
+          backgroundSize: "160px 160px",
         }}
       />
 
@@ -696,52 +775,79 @@ const Desktop = () => {
 
       {/* Desktop icon area */}
       <div
-        className="absolute top-4 left-4 bottom-14 w-[88px] flex flex-col gap-1 z-[5]"
+        className="absolute top-6 left-6 bottom-16 w-[112px] flex flex-col gap-3 z-[5]"
         data-desktop-area
       >
-        {DESKTOP_ICONS.map((icon) => (
-          <button
-            key={icon.id}
-            onClick={() => handleDesktopIconClick(icon.id)}
-            className={`flex flex-col items-center gap-1 py-2 px-1 rounded-xl transition-all duration-200 group cursor-pointer
-              ${
-                selectedDesktopIcon === icon.id
-                  ? "bg-white/10 ring-1 ring-white/15"
-                  : "hover:bg-white/[0.06]"
-              }
-              ${iconClickedId === icon.id ? "animate-iconBounce" : ""}
-            `}
-          >
+        {DESKTOP_ICONS.map((icon) => {
+          const isSelected = selectedDesktopIcon === icon.id;
+
+          return (
             <div
-              className={`${icon.color} transition-all duration-200 group-hover:scale-110 group-active:scale-90 drop-shadow-lg group-hover:drop-shadow-[0_0_8px_currentColor]`}
-            >
-              {icon.icon}
-            </div>
-            <span
-              className={`text-[10px] font-medium text-center leading-tight transition-colors duration-200 max-w-[76px] truncate ${
-                selectedDesktopIcon === icon.id
-                  ? "text-white/90"
-                  : "text-white/50 group-hover:text-white/70"
-              }`}
+              key={icon.id}
+              className="relative"
               style={{
-                textShadow: "0 1px 3px rgba(0,0,0,0.8)",
+                transform: `translate(${icon.offset.x}px, ${icon.offset.y}px) rotate(${icon.tilt}deg)`,
               }}
             >
-              {icon.label}
-            </span>
-          </button>
-        ))}
+              <button
+                onClick={() => handleDesktopIconClick(icon.id)}
+                className={`relative w-[98px] flex flex-col items-center gap-2 py-3 px-2 rounded-2xl border transition-all duration-200 group cursor-pointer hover:brightness-110
+                  ${
+                    isSelected
+                      ? "border-amber-400/40 ring-1 ring-amber-400/20"
+                      : "border-white/10 hover:border-white/20"
+                  }
+                  ${iconClickedId === icon.id ? "animate-iconBounce" : ""}
+                `}
+                style={{
+                  background: `linear-gradient(180deg, ${icon.noteTint} 0%, rgba(255,255,255,0.02) 100%)`,
+                  boxShadow:
+                    "0 12px 24px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.06) inset",
+                }}
+              >
+                <span
+                  className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 rounded-sm"
+                  style={{
+                    background: `linear-gradient(90deg, ${icon.tapeTint}, rgba(255,255,255,0.05))`,
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.25)",
+                    opacity: 0.7,
+                  }}
+                />
+                <div
+                  className={`w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 bg-white/[0.04] ${icon.color} transition-all duration-200 group-hover:scale-110 group-active:scale-95`}
+                >
+                  {icon.icon}
+                </div>
+                <span
+                  className={`text-[10px] font-display uppercase tracking-[0.16em] text-center leading-tight transition-colors duration-200 max-w-[86px] truncate ${
+                    isSelected
+                      ? "text-white/80"
+                      : "text-white/50 group-hover:text-white/70"
+                  }`}
+                  style={{
+                    textShadow: "0 1px 2px rgba(0,0,0,0.6)",
+                  }}
+                >
+                  {icon.label}
+                </span>
+              </button>
+            </div>
+          );
+        })}
       </div>
+
+      <WallpaperBot />
 
       {/* Welcome watermark */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-[3]">
         {windows.length === 0 && (
           <div className="text-center animate-fadeInSlow">
-            <h1 className="text-4xl md:text-5xl font-bold text-white/[0.04] mb-2 tracking-tight animate-breathe">
-              SjxSubhamOS
+            <h1 className="text-4xl md:text-6xl font-display text-white/[0.06] mb-2 tracking-tight animate-breathe">
+              Studio Desk
             </h1>
-            <p className="text-white/[0.03] text-sm font-medium tracking-widest uppercase">
-              Click an icon or right-click for options
+            <p className="text-white/[0.05] text-[11px] font-medium tracking-[0.3em] uppercase">
+              Pin a window • explore the notes
             </p>
           </div>
         )}
@@ -797,7 +903,7 @@ const Desktop = () => {
       {/* Context Menu */}
       {contextMenu && (
         <div
-          className="fixed z-[9999] w-56 bg-[#0d1117]/98 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/60 overflow-hidden animate-contextMenuIn py-1"
+          className="fixed z-[9999] w-56 bg-[#121018]/95 backdrop-blur-xl border border-amber-400/20 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden animate-contextMenuIn py-1"
           style={{
             top: Math.min(contextMenu.y, window.innerHeight - 300),
             left: Math.min(contextMenu.x, window.innerWidth - 240),
@@ -806,7 +912,7 @@ const Desktop = () => {
         >
           {contextMenuItems.map((item, i) =>
             item.type === "separator" ? (
-              <div key={i} className="h-px bg-white/5 my-1 mx-2" />
+              <div key={i} className="h-px bg-white/10 my-1 mx-2" />
             ) : (
               <button
                 key={i}
@@ -819,8 +925,8 @@ const Desktop = () => {
                 disabled={item.disabled}
                 className={`w-full flex items-center gap-2.5 px-3 py-2 text-xs transition-colors duration-150 ${
                   item.disabled
-                    ? "text-white/15 cursor-default"
-                    : "text-white/60 hover:bg-white/5 hover:text-white/90"
+                    ? "text-white/25 cursor-default"
+                    : "text-white/70 hover:bg-amber-500/10 hover:text-white"
                 }`}
               >
                 <span className="w-4 flex items-center justify-center shrink-0 opacity-60">
@@ -835,18 +941,18 @@ const Desktop = () => {
 
       {/* Wallpaper Picker */}
       {showWallpaperPicker && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9999] flex items-center justify-center animate-fadeInQuick">
+        <div className="fixed inset-0 bg-black/45 backdrop-blur-sm z-[9999] flex items-center justify-center animate-fadeInQuick">
           <div
             ref={wallpaperPickerRef}
-            className="bg-[#0d1117]/98 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/60 p-6 w-80 animate-scaleIn"
+            className="bg-[#121018]/95 backdrop-blur-xl border border-amber-400/20 rounded-3xl shadow-2xl shadow-black/60 p-6 w-80 animate-scaleIn"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-sm font-semibold text-white/80 mb-1 flex items-center gap-2">
-              <Palette size={14} className="text-purple-400" />
-              Change Wallpaper
+            <h3 className="text-sm font-display text-white/80 mb-1 flex items-center gap-2">
+              <Palette size={14} className="text-amber-300" />
+              Desk Backdrops
             </h3>
-            <p className="text-[11px] text-white/30 mb-4">
-              Choose a desktop background theme
+            <p className="text-[11px] text-white/40 mb-4">
+              Pick a studio mood for the desk
             </p>
 
             <div className="grid grid-cols-2 gap-3">
@@ -859,7 +965,7 @@ const Desktop = () => {
                   }}
                   className={`relative h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 group ${
                     wallpaper.id === wp.id
-                      ? "border-purple-500 shadow-lg shadow-purple-500/20 scale-[1.02]"
+                      ? "border-amber-400 shadow-lg shadow-amber-400/20 scale-[1.02]"
                       : "border-white/5 hover:border-white/15 hover:scale-[1.03]"
                   }`}
                 >
@@ -879,7 +985,7 @@ const Desktop = () => {
                     <span
                       className={`text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-md transition-all ${
                         wallpaper.id === wp.id
-                          ? "bg-purple-500/30 text-white/90"
+                          ? "bg-amber-400/20 text-white/90"
                           : "bg-black/30 text-white/50 group-hover:text-white/70"
                       }`}
                     >
@@ -887,7 +993,7 @@ const Desktop = () => {
                     </span>
                   </div>
                   {wallpaper.id === wp.id && (
-                    <div className="absolute top-2 right-2 w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center animate-scaleIn">
+                    <div className="absolute top-2 right-2 w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center animate-scaleIn">
                       <svg
                         className="w-2.5 h-2.5 text-white"
                         fill="none"
@@ -909,7 +1015,7 @@ const Desktop = () => {
 
             <button
               onClick={() => setShowWallpaperPicker(false)}
-              className="w-full mt-4 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white/50 hover:text-white/80 text-xs transition-all duration-200"
+              className="w-full mt-4 px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-400/30 text-white/60 hover:text-white text-xs transition-all duration-200"
             >
               Close
             </button>

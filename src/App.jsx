@@ -26,7 +26,7 @@ function App() {
     document.body.style.overflow = "hidden";
     document.body.style.margin = "0";
     document.body.style.padding = "0";
-    document.body.style.backgroundColor = "#0a0a0f";
+    document.body.style.backgroundColor = "#0b0a0d";
 
     return () => {
       document.body.style.overflow = "";
@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-[#0a0a0f]">
+    <div className="w-screen h-screen overflow-hidden bg-[#0b0a0d]">
       {phase === "boot" && <Boot onBootComplete={handleBootComplete} />}
       {phase === "desktop" && <Desktop />}
     </div>

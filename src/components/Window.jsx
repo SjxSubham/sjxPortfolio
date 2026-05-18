@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { Minus, Square, X, Maximize2 } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from "react";
+import { Minus, Square, X, Maximize2 } from "lucide-react";
 
 const Window = ({
   id,
@@ -23,7 +23,7 @@ const Window = ({
     defaultPosition || {
       x: 80 + Math.random() * 200,
       y: 40 + Math.random() * 100,
-    }
+    },
   );
   const [size, setSize] = useState(defaultSize);
   const [isDragging, setIsDragging] = useState(false);
@@ -53,7 +53,7 @@ const Window = ({
         y: e.clientY - position.y,
       });
     },
-    [isMaximized, position, onFocus]
+    [isMaximized, position, onFocus],
   );
 
   const handleMouseMove = useCallback(
@@ -72,13 +72,15 @@ const Window = ({
         let newX = resizeStart.current.px;
         let newY = resizeStart.current.py;
 
-        if (dir.includes('e')) newW = Math.max(minSize.width, resizeStart.current.w + dx);
-        if (dir.includes('w')) {
+        if (dir.includes("e"))
+          newW = Math.max(minSize.width, resizeStart.current.w + dx);
+        if (dir.includes("w")) {
           newW = Math.max(minSize.width, resizeStart.current.w - dx);
           newX = resizeStart.current.px + (resizeStart.current.w - newW);
         }
-        if (dir.includes('s')) newH = Math.max(minSize.height, resizeStart.current.h + dy);
-        if (dir.includes('n')) {
+        if (dir.includes("s"))
+          newH = Math.max(minSize.height, resizeStart.current.h + dy);
+        if (dir.includes("n")) {
           newH = Math.max(minSize.height, resizeStart.current.h - dy);
           newY = resizeStart.current.py + (resizeStart.current.h - newH);
         }
@@ -87,7 +89,7 @@ const Window = ({
         setPosition({ x: newX, y: newY });
       }
     },
-    [isDragging, isResizing, dragOffset, minSize]
+    [isDragging, isResizing, dragOffset, minSize],
   );
 
   const handleMouseUp = useCallback(() => {
@@ -98,11 +100,11 @@ const Window = ({
 
   useEffect(() => {
     if (isDragging || isResizing) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
       return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
+        window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mouseup", handleMouseUp);
       };
     }
   }, [isDragging, isResizing, handleMouseMove, handleMouseUp]);
@@ -145,8 +147,8 @@ const Window = ({
     ? {
         top: 0,
         left: 0,
-        width: '100%',
-        height: 'calc(100% - 48px)',
+        width: "100%",
+        height: "calc(100% - 48px)",
         zIndex: zIndex || 10,
       }
     : {
@@ -160,53 +162,76 @@ const Window = ({
   return (
     <div
       ref={windowRef}
-      className={`absolute flex flex-col rounded-lg overflow-hidden shadow-2xl transition-shadow duration-200 select-none
-        ${isActive ? 'shadow-black/50 ring-1 ring-purple-500/30' : 'shadow-black/30 ring-1 ring-white/5'}
-        ${isAppearing ? 'animate-windowOpen' : ''}
-        ${isMaximized ? 'rounded-none' : ''}
+      className={`absolute flex flex-col rounded-2xl overflow-hidden shadow-[0_18px_48px_rgba(0,0,0,0.45)] transition-shadow duration-200 select-none
+        ${isActive ? "ring-1 ring-amber-400/35" : "ring-1 ring-white/10"}
+        ${isAppearing ? "animate-windowOpen" : ""}
+        ${isMaximized ? "rounded-none" : ""}
       `}
       style={{
         ...windowStyle,
-        backdropFilter: 'blur(20px)',
-        transition: isDragging || isResizing ? 'none' : 'top 0.2s, left 0.2s, width 0.2s, height 0.2s',
+        backdropFilter: "blur(18px)",
+        transition:
+          isDragging || isResizing
+            ? "none"
+            : "top 0.2s, left 0.2s, width 0.2s, height 0.2s",
       }}
       onMouseDown={() => onFocus?.()}
     >
       {/* Title bar */}
       <div
-        className={`flex items-center justify-between h-10 px-3 shrink-0 cursor-default select-none
-          ${isActive
-            ? 'bg-gradient-to-r from-[#1a1a2e] to-[#16213e] border-b border-purple-500/20'
-            : 'bg-[#1a1a1a] border-b border-white/5'
+        className={`relative flex items-center justify-between h-10 px-3 shrink-0 cursor-default select-none overflow-hidden
+          ${
+            isActive
+              ? "bg-[#14121b] border-b border-amber-400/20"
+              : "bg-[#101118] border-b border-white/10"
           }`}
         onMouseDown={handleMouseDown}
         onDoubleClick={handleDoubleClickTitle}
       >
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[2px]"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(251,191,36,0.55), rgba(255,255,255,0.08), rgba(94,234,212,0.2))",
+            opacity: isActive ? 0.7 : 0.3,
+          }}
+        />
         <div className="flex items-center gap-2 min-w-0">
           {icon && <span className="text-sm shrink-0">{icon}</span>}
-          <span className={`text-xs font-medium truncate ${isActive ? 'text-white/90' : 'text-white/40'}`}>
+          <span
+            className={`text-xs font-display truncate ${isActive ? "text-white/90" : "text-white/50"}`}
+          >
             {title}
           </span>
         </div>
 
         <div className="flex items-center gap-1 shrink-0 ml-2">
           <button
-            onClick={(e) => { e.stopPropagation(); onMinimize?.(); }}
-            className="w-7 h-6 flex items-center justify-center rounded hover:bg-white/10 text-white/50 hover:text-yellow-400 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              onMinimize?.();
+            }}
+            className="w-7 h-6 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-amber-300 transition-colors"
             title="Minimize"
           >
             <Minus size={13} />
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); handleMaximize(); }}
-            className="w-7 h-6 flex items-center justify-center rounded hover:bg-white/10 text-white/50 hover:text-green-400 transition-colors"
-            title={isMaximized ? 'Restore' : 'Maximize'}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleMaximize();
+            }}
+            className="w-7 h-6 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-emerald-300 transition-colors"
+            title={isMaximized ? "Restore" : "Maximize"}
           >
             {isMaximized ? <Square size={11} /> : <Maximize2 size={12} />}
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); onClose?.(); }}
-            className="w-7 h-6 flex items-center justify-center rounded hover:bg-red-500/80 text-white/50 hover:text-white transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose?.();
+            }}
+            className="w-7 h-6 flex items-center justify-center rounded-full bg-white/5 hover:bg-rose-500/80 text-white/50 hover:text-white transition-colors"
             title="Close"
           >
             <X size={14} />
@@ -215,7 +240,7 @@ const Window = ({
       </div>
 
       {/* Window body */}
-      <div className="flex-1 overflow-auto bg-[#0d1117]/95 text-white/90 text-sm">
+      <div className="flex-1 overflow-auto bg-[#0f0e14]/95 text-white/90 text-sm">
         {children}
       </div>
 
@@ -223,15 +248,39 @@ const Window = ({
       {!isMaximized && (
         <>
           {/* Edges */}
-          <div className="absolute top-0 left-2 right-2 h-1 cursor-n-resize" onMouseDown={handleResizeStart('n')} />
-          <div className="absolute bottom-0 left-2 right-2 h-1 cursor-s-resize" onMouseDown={handleResizeStart('s')} />
-          <div className="absolute top-2 left-0 bottom-2 w-1 cursor-w-resize" onMouseDown={handleResizeStart('w')} />
-          <div className="absolute top-2 right-0 bottom-2 w-1 cursor-e-resize" onMouseDown={handleResizeStart('e')} />
+          <div
+            className="absolute top-0 left-2 right-2 h-1 cursor-n-resize"
+            onMouseDown={handleResizeStart("n")}
+          />
+          <div
+            className="absolute bottom-0 left-2 right-2 h-1 cursor-s-resize"
+            onMouseDown={handleResizeStart("s")}
+          />
+          <div
+            className="absolute top-2 left-0 bottom-2 w-1 cursor-w-resize"
+            onMouseDown={handleResizeStart("w")}
+          />
+          <div
+            className="absolute top-2 right-0 bottom-2 w-1 cursor-e-resize"
+            onMouseDown={handleResizeStart("e")}
+          />
           {/* Corners */}
-          <div className="absolute top-0 left-0 w-3 h-3 cursor-nw-resize" onMouseDown={handleResizeStart('nw')} />
-          <div className="absolute top-0 right-0 w-3 h-3 cursor-ne-resize" onMouseDown={handleResizeStart('ne')} />
-          <div className="absolute bottom-0 left-0 w-3 h-3 cursor-sw-resize" onMouseDown={handleResizeStart('sw')} />
-          <div className="absolute bottom-0 right-0 w-3 h-3 cursor-se-resize" onMouseDown={handleResizeStart('se')} />
+          <div
+            className="absolute top-0 left-0 w-3 h-3 cursor-nw-resize"
+            onMouseDown={handleResizeStart("nw")}
+          />
+          <div
+            className="absolute top-0 right-0 w-3 h-3 cursor-ne-resize"
+            onMouseDown={handleResizeStart("ne")}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-3 h-3 cursor-sw-resize"
+            onMouseDown={handleResizeStart("sw")}
+          />
+          <div
+            className="absolute bottom-0 right-0 w-3 h-3 cursor-se-resize"
+            onMouseDown={handleResizeStart("se")}
+          />
         </>
       )}
 

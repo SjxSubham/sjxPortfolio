@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -15,7 +15,7 @@
 
     html {
         font-family:
-            "Inter",
+            "Space Grotesk",
             system-ui,
             -apple-system,
             BlinkMacSystemFont,
@@ -45,13 +45,13 @@
 
     /* Selection color */
     ::selection {
-        background-color: rgba(168, 85, 247, 0.3);
-        color: #f8fafc;
+        background-color: rgba(251, 191, 36, 0.25);
+        color: #fff7ed;
     }
 
     ::-moz-selection {
-        background-color: rgba(168, 85, 247, 0.3);
-        color: #f8fafc;
+        background-color: rgba(251, 191, 36, 0.25);
+        color: #fff7ed;
     }
 
     /* Global scrollbar — thin and subtle */
@@ -101,7 +101,7 @@
 
     /* Remove default focus outlines, add custom */
     :focus-visible {
-        outline: 1px solid rgba(168, 85, 247, 0.5);
+        outline: 1px solid rgba(251, 191, 36, 0.55);
         outline-offset: 2px;
         border-radius: 4px;
     }
@@ -188,6 +188,11 @@
         text-shadow:
             0 2px 4px rgba(0, 0, 0, 0.8),
             0 0 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .font-display {
+        font-family: "Newsreader", "Iowan Old Style", serif;
+        letter-spacing: 0.01em;
     }
 
     /* Truncate with ellipsis */
