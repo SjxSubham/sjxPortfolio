@@ -60,6 +60,68 @@ const parseCsv = (text) => {
   });
 };
 
+const STOPWORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "are",
+  "can",
+  "could",
+  "do",
+  "for",
+  "from",
+  "how",
+  "i",
+  "is",
+  "it",
+  "me",
+  "my",
+  "of",
+  "on",
+  "or",
+  "please",
+  "the",
+  "to",
+  "what",
+  "when",
+  "where",
+  "who",
+  "why",
+  "you",
+  "your",
+]);
+
+const extractTopic = (question) => {
+  const words = question
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((word) => !STOPWORDS.has(word));
+
+  if (!words.length) return "";
+  return words.slice(0, 3).join(" ");
+};
+
+const generateAnswer = (question) => {
+  const normalized = question.toLowerCase();
+  const topic = extractTopic(question);
+
+  if (/(^|\s)(hi|hello|hey|yo)(\s|!|\?|$)/.test(normalized)) {
+    return "Hey! I can answer from my CSV notes and share a tech joke. Ask about skills, projects, or socials.";
+  }
+
+  if (normalized.includes("help") || normalized.includes("what can you do")) {
+    return "I answer questions from a CSV knowledge base and add a joke. Try: skills, projects, email, GitHub, or location.";
+  }
+
+  if (normalized.includes("joke")) {
+    return "You got it—here's a fresh one plus your info.";
+  }
+
+  return `Interesting question about ${topic || "that topic"}. I'm a local bot without internet, so here's a quick take: break it into smaller parts, validate assumptions, and test iteratively.`;
+};
+
 const PROFILE = {
   name: "Subham Mondal",
   role: "Full Stack Developer",
@@ -150,9 +212,7 @@ const WallpaperBot = () => {
     if (!question) return;
 
     const joke = JOKES[Math.floor(Math.random() * JOKES.length)];
-    const answer =
-      findAnswer(question) ||
-      "I don't have that in my CSV notes yet. Try asking about skills, projects, or socials.";
+    const answer = findAnswer(question) || generateAnswer(question);
 
     setMessages((prev) => [
       ...prev,

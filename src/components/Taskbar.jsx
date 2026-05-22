@@ -80,12 +80,55 @@ const Taskbar = ({
   const [showStartMenu, setShowStartMenu] = useState(false);
   const [hoveredApp, setHoveredApp] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0 });
+  const [batteryInfo, setBatteryInfo] = useState({
+    supported: false,
+    level: null,
+    charging: null,
+  });
   const startMenuRef = useRef(null);
   const startBtnRef = useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    let battery;
+
+    const updateBattery = () => {
+      if (!battery || !isMounted) return;
+      setBatteryInfo({
+        supported: true,
+        level: battery.level,
+        charging: battery.charging,
+      });
+    };
+
+    if (navigator.getBattery) {
+      navigator
+        .getBattery()
+        .then((bat) => {
+          if (!isMounted) return;
+          battery = bat;
+          updateBattery();
+          battery.addEventListener("levelchange", updateBattery);
+          battery.addEventListener("chargingchange", updateBattery);
+        })
+        .catch(() => {
+          if (!isMounted) return;
+          setBatteryInfo({ supported: false, level: null, charging: null });
+        });
+    }
+
+    return () => {
+      isMounted = false;
+      if (battery) {
+        battery.removeEventListener("levelchange", updateBattery);
+        battery.removeEventListener("chargingchange", updateBattery);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -147,6 +190,18 @@ const Taskbar = ({
       onWindowFocus?.(appId);
     }
   };
+
+  const batteryPercent =
+    batteryInfo.level !== null ? Math.round(batteryInfo.level * 100) : null;
+  const batteryColor =
+    batteryPercent !== null && batteryPercent <= 20
+      ? "text-rose-300"
+      : batteryInfo.charging
+        ? "text-emerald-300"
+        : "text-white/40";
+  const batteryLabel = batteryInfo.supported
+    ? `Battery ${batteryPercent ?? "--"}%${batteryInfo.charging ? " (charging)" : ""}`
+    : "Battery status unavailable";
 
   return (
     <>
@@ -328,8 +383,16 @@ const Taskbar = ({
           </div>
 
           {/* Battery */}
-          <div className="h-8 w-8 flex items-center justify-center rounded hover:bg-amber-500/10 transition-colors cursor-default">
-            <Battery size={13} className="text-white/40" />
+          <div
+            className="h-8 px-2 flex items-center justify-center rounded hover:bg-amber-500/10 transition-colors cursor-default group"
+            title={batteryLabel}
+          >
+            <Battery size={13} className={batteryColor} />
+            {batteryPercent !== null && (
+              <span className="ml-1 text-[10px] text-white/50 group-hover:text-white/70">
+                {batteryPercent}%
+              </span>
+            )}
           </div>
 
           {/* Separator */}
